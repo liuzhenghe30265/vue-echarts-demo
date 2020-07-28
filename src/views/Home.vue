@@ -6,16 +6,23 @@
           href="https://github.com/liuzhenghe30265/vue-echarts-demo/src/components/PieChart.vue">基础饼图</a>
         <pie-chart></pie-chart>
       </li>
+      <li>
+        <a href="">水球</a>
+        <liquidfill-chart>
+        </liquidfill-chart>
+      </li>
     </ul>
   </div>
 </template>
 
 <script>
 import PieChart from '@/components/PieChart.vue'
+import LiquidfillChart from '@/components/LiquidfillChart.vue' // 水球
 
 export default {
   name: 'Home',
   components: {
+    LiquidfillChart,
     PieChart,
   },
   data() {
@@ -27,7 +34,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .charts-container {
-  padding: 0 20px;
+  padding: 20px;
   ul {
     overflow: hidden;
     margin: 0 -10px;

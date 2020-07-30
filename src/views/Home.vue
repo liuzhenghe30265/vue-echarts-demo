@@ -11,19 +11,27 @@
         <liquidfill-chart>
         </liquidfill-chart>
       </li>
+      <li>
+        <a href="">进度条</a>
+        <progressbar-chart>
+        </progressbar-chart>
+      </li>
+      <div class="clear"></div>
     </ul>
   </div>
 </template>
 
 <script>
 import PieChart from '@/components/PieChart.vue'
-import LiquidfillChart from '@/components/LiquidfillChart.vue' // 水球
+import LiquidfillChart from '@/components/LiquidfillChart.vue'
+import progressbarChart from '@/components/progressbarChart.vue'
 
 export default {
   name: 'Home',
   components: {
+    progressbarChart,
     LiquidfillChart,
-    PieChart,
+    PieChart
   },
   data() {
     return {
@@ -33,6 +41,12 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.clear {
+  width: 100%;
+  height: 100%;
+  clear: both;
+  overflow: hidden;
+}
 .charts-container {
   padding: 20px;
   ul {

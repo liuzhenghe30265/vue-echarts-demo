@@ -3,11 +3,12 @@
  * @Email: 15901450207@163.com
  * @Date: 2020-07-28 09:55:52
  * @LastEditors: liuzhenghe
- * @LastEditTime: 2020-07-28 10:14:47
+ * @LastEditTime: 2020-08-01 11:24:54
  * @Descripttion: 水球
 --> 
 <template>
-  <div :id="id" class="chart"></div>
+  <div ref="LiquidfillChart"
+    class="chart"></div>
 </template>
 
 <script>
@@ -18,8 +19,11 @@ export default {
   components: {},
   data() {
     return {
-      id: this.onlyId(),
-      chartData: {}
+      chartData: {
+        name: '总量',
+        text: '200',
+        data: 0.5,
+      },
     }
   },
   watch: {
@@ -42,15 +46,13 @@ export default {
     this.drawChart()
   },
   methods: {
-    // 生成图表的唯一ID
-    onlyId() {
-      return Date.parse(new Date()) + 'LiquidfillChart'
-    },
     // 绘制图表
     drawChart() {
-      let chart = echarts.init(document.getElementById(this.id))
+      let chart = echarts.init(this.$refs.LiquidfillChart)
       if (chart === undefined) {
-        console.error(`echarts init dom id ${this.id} failed`)
+        console.error(
+          `echarts init dom id ${this.$refs.LiquidfillChart} failed`
+        )
         return
       }
       chart.setOption(this.chartOption())
@@ -69,73 +71,84 @@ export default {
       const _this = this
       return {
         title: {
-          text: '200',
+          text: this.chartData.text,
           textStyle: {
             fontWeight: 'bold',
             fontSize: 28,
             color: '#00DDFF',
-            fontFamily: 'Arial'
+            fontFamily: 'Arial',
           },
           x: 'center',
-          y: '50%'
+          y: '50%',
         },
-        graphic: [{
-          type: 'group',
-          left: 'center',
-          top: '40%',
-          children: [{
-            type: 'text',
-            z: 100,
-            left: '10',
-            top: 'middle',
-            style: {
-              fill: '#AED8E5',
-              text: '总量',
-              fontSize: 14
-            }
-          }]
-        }],
-        series: [{
-          type: 'liquidFill',
-          radius: '60%',
-          center: ['50%', '55%'],
-          //   shape: 'roundRect',
-          data: [{
-            value: 0.5,
-            itemStyle: {
-              color: {
-                type: 'linear',
-                x: 0,
-                y: 0,
-                x2: 0,
-                y2: 1,
-                colorStops: [{
-                  offset: 1,
-                  color: '#52FB6B'
-                }, {
-                  offset: 0,
-                  color: '#A152FB'
-                }],
-                globalCoord: false
-              }
-            }
-          }],
-          backgroundStyle: {
-            color: 'transparent'
+        graphic: [
+          {
+            type: 'group',
+            left: 'center',
+            top: '40%',
+            children: [
+              {
+                type: 'text',
+                z: 100,
+                left: '10',
+                top: 'middle',
+                style: {
+                  fill: '#AED8E5',
+                  text: this.chartData.name,
+                  fontSize: 14,
+                },
+              },
+            ],
           },
-          outline: {
-            borderDistance: 3,
-            itemStyle: {
-              borderWidth: 2,
-              borderColor: '#A152FB'
-            }
+        ],
+        series: [
+          {
+            type: 'liquidFill',
+            radius: '60%',
+            center: ['50%', '55%'],
+            //   shape: 'roundRect',
+            data: [
+              {
+                value: this.chartData.data,
+                itemStyle: {
+                  color: {
+                    type: 'linear',
+                    x: 0,
+                    y: 0,
+                    x2: 0,
+                    y2: 1,
+                    colorStops: [
+                      {
+                        offset: 1,
+                        color: '#52FB6B',
+                      },
+                      {
+                        offset: 0,
+                        color: '#A152FB',
+                      },
+                    ],
+                    globalCoord: false,
+                  },
+                },
+              },
+            ],
+            backgroundStyle: {
+              color: 'transparent',
+            },
+            outline: {
+              borderDistance: 3,
+              itemStyle: {
+                borderWidth: 2,
+                borderColor: '#A152FB',
+              },
+            },
+            label: {
+              normal: {
+                formatter: '',
+              },
+            },
           },
-          label: {
-            normal: {
-              formatter: ''
-            }
-          }
-        }]
+        ],
       }
     },
   },

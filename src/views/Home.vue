@@ -2,17 +2,19 @@
   <div class="charts-container">
     <ul>
       <li>
-        <a
-          href="https://github.com/liuzhenghe30265/vue-echarts-demo/src/components/PieChart.vue">基础饼图</a>
+        <a target="blank"
+          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/PieChart.vue">基础饼图</a>
         <pie-chart></pie-chart>
       </li>
       <li>
-        <a href="">水球</a>
+        <a target="blank"
+          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/LiquidfillChart.vue">水球</a>
         <liquidfill-chart>
         </liquidfill-chart>
       </li>
       <li>
-        <a href="">进度条</a>
+        <a target="blank"
+          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/progressbarChart.vue">进度条</a>
         <progressbar-chart>
         </progressbar-chart>
       </li>

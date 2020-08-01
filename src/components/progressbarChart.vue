@@ -3,7 +3,7 @@
  * @Email: 15901450207@163.com
  * @Date: 2020-07-30 15:10:39
  * @LastEditors: liuzhenghe
- * @LastEditTime: 2020-07-30 16:01:35
+ * @LastEditTime: 2020-08-01 11:02:06
  * @Descripttion: 进度条效果
 --> 
 <template>
@@ -20,11 +20,9 @@ export default {
     return {
       chartData: {
         data: [
-          { name: 'name1', count: 100 },
-          { name: 'name2', count: 200 },
-          { name: 'name3', count: 300 },
-          { name: 'name4', count: 200 },
-          { name: 'name5', count: 100 }
+          { name: '进度1', count: 100 },
+          { name: '进度2', count: 300 },
+          { name: '进度3', count: 200 }
         ]
       }
     }

@@ -3,11 +3,12 @@
  * @Email: 15901450207@163.com
  * @Date: 2020-07-26 09:32:45
  * @LastEditors: liuzhenghe
- * @LastEditTime: 2020-07-26 17:08:58
+ * @LastEditTime: 2020-08-01 11:10:30
  * @Descripttion: 基础饼图
 --> 
 <template>
-  <div :id="id" class="chart"></div>
+  <div ref="PieChart" class="chart">
+  </div>
 </template>
 
 <script>
@@ -17,7 +18,6 @@ export default {
   components: {},
   data() {
     return {
-      id: this.onlyId(),
       chartData: {
         data: [
           {
@@ -32,9 +32,7 @@ export default {
             name: '谷歌',
             value: 300,
           },
-        ],
-        total: 600,
-        color: ['#52FB6B', '#A152FB', '#52BDFB'],
+        ]
       },
     }
   },
@@ -58,17 +56,16 @@ export default {
     this.drawChart()
   },
   methods: {
-    // 生成图表的唯一ID
-    onlyId() {
-      return Date.parse(new Date()) + 'PieChart'
-    },
     // 绘制图表
     drawChart() {
-      let chart = echarts.init(document.getElementById(this.id))
+      let chart = echarts.init(this.$refs.PieChart)
       if (chart === undefined) {
-        console.error(`echarts init dom id ${this.id} failed`)
+        console.error(`echarts init dom ref ${this.$refs.PieChart} failed`)
         return
       }
+      // 处理数据
+      let valArr = this.chartData.data.map((item) => item.value)
+      this.chartData.total = eval(valArr.join('+'))
       chart.setOption(this.chartOption())
       let work = null
       window.addEventListener('resize', () => {
@@ -123,9 +120,9 @@ export default {
             type: 'pie',
             clockWise: true, // 顺时加载
             hoverAnimation: true, // 鼠标移入变大
-            radius: ['65%', '85%'],
+            radius: ['50%', '60%'],
             // center: ['30%', '55%'],
-            color: this.chartData.color,
+            color: ['#52FB6B', '#A152FB', '#52BDFB'],
             avoidLabelOverlap: false,
             label: {
               normal: {

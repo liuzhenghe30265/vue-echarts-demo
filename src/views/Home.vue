@@ -18,6 +18,12 @@
         <progressbar-chart>
         </progressbar-chart>
       </li>
+      <li>
+        <a target="blank"
+          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/BaseBarChart.vue">基础柱状图</a>
+        <base-bar-chart>
+        </base-bar-chart>
+      </li>
       <div class="clear"></div>
     </ul>
   </div>
@@ -27,13 +33,15 @@
 import PieChart from '@/components/PieChart.vue'
 import LiquidfillChart from '@/components/LiquidfillChart.vue'
 import progressbarChart from '@/components/progressbarChart.vue'
+import BaseBarChart from '@/components/BaseBarChart.vue'
 
 export default {
   name: 'Home',
   components: {
+    BaseBarChart,
     progressbarChart,
     LiquidfillChart,
-    PieChart
+    PieChart,
   },
   data() {
     return {
@@ -56,7 +64,7 @@ export default {
     margin: 0 -10px;
     li {
       width: 33.3%;
-      height: 200px;
+      height: 240px;
       float: left;
       box-sizing: border-box;
       padding: 10px;
@@ -64,6 +72,8 @@ export default {
         font-size: 24px;
         color: #409eff;
         font-weight: bold;
+        display: block;
+        margin-bottom: 10px;
       }
     }
   }

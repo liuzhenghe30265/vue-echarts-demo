@@ -3,18 +3,18 @@
  * @Email: 15901450207@163.com
  * @Date: 2020-08-01 12:11:07
  * @LastEditors: liuzhenghe
- * @LastEditTime: 2020-08-02 10:43:15
- * @Descripttion: 基础柱状图
+ * @LastEditTime: 2020-08-02 11:34:02
+ * @Descripttion: 基础折线图
 --> 
 <template>
-  <div ref="demo"
+  <div ref="BasicLineChart"
     class="chart" />
 </template>
 
 <script>
 import echarts from 'echarts'
 export default {
-  name: 'demo',
+  name: 'BasicLineChart',
   props: {
     // data: {
     //   type: Array,
@@ -37,18 +37,17 @@ export default {
         data: [
           {
             name: '数据1',
-            type: 'bar',
-            data: [320, 332, 301, 334, 390],
+            type: 'line',
+            smooth: true,
+            icon: 'rect',
+            data: [820, 932, 901, 934, 1290, 1330, 1320],
           },
           {
             name: '数据2',
-            type: 'bar',
-            data: [220, 182, 300, 234, 190],
-          },
-          {
-            name: '数据3',
-            type: 'bar',
-            data: [150, 232, 100, 154, 190],
+            type: 'line',
+            smooth: true,
+            // icon: 'rect',
+            data: [100, 200, 300, 400, 400, 500, 600],
           },
         ],
       },
@@ -57,17 +56,16 @@ export default {
   mounted() {
     this.drawChart()
   },
-  created() {},
   methods: {
     // 绘制图表
     drawChart() {
-      let chartDOM = this.$refs.demo
+      let chartDOM = this.$refs.BasicLineChart
       if (!chartDOM) {
         console.error(`echarts init dom failed`)
         return false
       } else {
         this.chartData.name = this.chartData.data.map((item) => item.name)
-        let chart = echarts.init(this.$refs.demo)
+        let chart = echarts.init(this.$refs.BasicLineChart)
         chart.setOption(this.chartOption())
         let work = null
         window.addEventListener('resize', () => {
@@ -83,49 +81,64 @@ export default {
     // 绘制图表
     chartOption() {
       return {
+        animation: true,
         title: {
           text: '数量统计',
           subtext: '小标题',
           left: 'left',
         },
         legend: {
-          data: this.chartData.name,
-          right: 0,
+          itemHeight: 2,
+          itemWidth: 14,
+          data: this.chartData.data,
+          textStyle: {
+            color: ' #222',
+            fontSize: 12,
+          },
         },
+        color: ['#52FB6B', '#A152FB', '#52BDFB'],
         grid: {
-          top: '25%',
+          top: '35%',
           left: '5%',
           right: '5%',
           bottom: '10%',
           containLabel: true,
         },
-        barGap: 0, // 间距
-        color: ['#52FB6B', '#A152FB', '#52BDFB'],
         xAxis: {
           type: 'category',
-          data: ['1月', '2月', '3月'],
-          //   x 轴文字颜色
+          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
           axisLabel: {
             textStyle: {
               color: '#333',
               fontSize: 12,
+            },
+          },
+          splitLine: {
+            show: false,
+            lineStyle: {
+              color: '#333',
+              type: 'dashed',
             },
           },
         },
         yAxis: {
           type: 'value',
-          //   y 轴文字颜色
+          name: '个',
+          nameTextStyle: {
+            color: '#333',
+            fontSize: 12,
+          },
+          splitLine: {
+            show: true,
+            lineStyle: {
+              color: '#999',
+              type: 'dashed',
+            },
+          },
           axisLabel: {
             textStyle: {
               color: '#333',
               fontSize: 12,
-            },
-          },
-          //   y 轴坐标线
-          splitLine: {
-            lineStyle: {
-              color: '#333',
-              type: 'dashed',
             },
           },
         },

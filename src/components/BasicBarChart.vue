@@ -3,7 +3,7 @@
  * @Email: 15901450207@163.com
  * @Date: 2020-08-01 12:11:07
  * @LastEditors: liuzhenghe
- * @LastEditTime: 2020-08-02 10:14:24
+ * @LastEditTime: 2020-08-02 11:29:57
  * @Descripttion: 基础柱状图
 --> 
 <template>
@@ -36,17 +36,17 @@ export default {
       chartData: {
         data: [
           {
-            name: '北京',
+            name: '数据1',
             type: 'bar',
             data: [320, 332, 301, 334, 390],
           },
           {
-            name: '上海',
+            name: '数据2',
             type: 'bar',
             data: [220, 182, 300, 234, 190],
           },
           {
-            name: '广州',
+            name: '数据3',
             type: 'bar',
             data: [150, 232, 100, 154, 190],
           },
@@ -93,7 +93,7 @@ export default {
           right: 0,
         },
         grid: {
-          top: '25%',
+          top: '35%',
           left: '5%',
           right: '5%',
           bottom: '10%',
@@ -113,6 +113,7 @@ export default {
           },
         },
         yAxis: {
+          name: '个',
           type: 'value',
           //   y 轴文字颜色
           axisLabel: {

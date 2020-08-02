@@ -2,6 +2,12 @@
   <div class="charts-container">
     <ul>
       <li>
+        <basic-line-chart>
+        </basic-line-chart>
+        <a target="blank"
+          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/BasicLineChart.vue">🔗</a>
+      </li>
+      <li>
         <basic-bar-chart>
         </basic-bar-chart>
         <a target="blank"
@@ -24,7 +30,6 @@
         </progressbar-chart>
         <a target="blank"
           href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/ProgressbarChart.vue">🔗</a>
-
       </li>
       <div class="clear"></div>
     </ul>
@@ -32,6 +37,7 @@
 </template>
 
 <script>
+import BasicLineChart from '@/components/BasicLineChart.vue'
 import BasicBarChart from '@/components/BasicBarChart.vue'
 import BasicPieChart from '@/components/BasicPieChart.vue'
 import LiquidfillChart from '@/components/LiquidfillChart.vue'
@@ -40,6 +46,7 @@ import ProgressbarChart from '@/components/ProgressbarChart.vue'
 export default {
   name: 'Home',
   components: {
+    BasicLineChart,
     BasicPieChart,
     BasicBarChart,
     ProgressbarChart,

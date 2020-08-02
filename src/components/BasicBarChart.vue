@@ -7,14 +7,14 @@
  * @Descripttion: 基础柱状图
 --> 
 <template>
-  <div ref="BaseBarChart"
+  <div ref="BasicBarChart"
     class="chart" />
 </template>
 
 <script>
 import echarts from 'echarts'
 export default {
-  name: 'BaseBarChart',
+  name: 'BasicBarChart',
   props: {
     // data: {
     //   type: Array,
@@ -61,13 +61,13 @@ export default {
   methods: {
     // 绘制图表
     drawChart() {
-      let chartDOM = this.$refs.BaseBarChart
+      let chartDOM = this.$refs.BasicBarChart
       if (!chartDOM) {
         console.error(`echarts init dom failed`)
         return false
       } else {
         this.chartData.name = this.chartData.data.map((item) => item.name)
-        let chart = echarts.init(this.$refs.BaseBarChart)
+        let chart = echarts.init(this.$refs.BasicBarChart)
         chart.setOption(this.chartOption())
         let work = null
         window.addEventListener('resize', () => {

@@ -7,14 +7,14 @@
  * @Descripttion: 基础饼图
 --> 
 <template>
-  <div ref="BasePieChart" class="chart">
+  <div ref="BasicPieChart" class="chart">
   </div>
 </template>
 
 <script>
 import echarts from 'echarts'
 export default {
-  name: 'BasePieChart',
+  name: 'BasicPieChart',
   components: {},
   data() {
     return {
@@ -58,7 +58,7 @@ export default {
   methods: {
     // 绘制图表
     drawChart() {
-      let chartDOM = this.$refs.BasePieChart
+      let chartDOM = this.$refs.BasicPieChart
       if (!chartDOM) {
         console.error(`echarts init dom failed`)
         return false
@@ -66,7 +66,7 @@ export default {
         // 处理数据
         let valArr = this.chartData.data.map((item) => item.value)
         this.chartData.total = eval(valArr.join('+'))
-        let chart = echarts.init(this.$refs.BasePieChart)
+        let chart = echarts.init(this.$refs.BasicPieChart)
         chart.setOption(this.chartOption())
         let work = null
         window.addEventListener('resize', () => {

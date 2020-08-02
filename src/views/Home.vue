@@ -3,15 +3,15 @@
     <ul>
       <li>
         <a target="blank"
-          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/BaseBarChart.vue">基础柱状图</a>
-        <base-bar-chart>
-        </base-bar-chart>
+          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/BasicBarChart.vue">基础柱状图</a>
+        <basic-bar-chart>
+        </basic-bar-chart>
       </li>
       <li>
         <a target="blank"
-          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/PieChart.vue">基础饼图</a>
-        <base-pie-chart>
-        </base-pie-chart>
+          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/BasicPieChart.vue">基础饼图</a>
+        <basic-pie-chart>
+        </basic-pie-chart>
       </li>
       <li>
         <a target="blank"
@@ -31,18 +31,18 @@
 </template>
 
 <script>
-import BasePieChart from '@/components/BasePieChart.vue'
+import BasicBarChart from '@/components/BasicBarChart.vue'
+import BasicPieChart from '@/components/BasicPieChart.vue'
 import LiquidfillChart from '@/components/LiquidfillChart.vue'
 import ProgressbarChart from '@/components/ProgressbarChart.vue'
-import BaseBarChart from '@/components/BaseBarChart.vue'
 
 export default {
   name: 'Home',
   components: {
-    BaseBarChart,
+    BasicPieChart,
+    BasicBarChart,
     ProgressbarChart,
     LiquidfillChart,
-    BasePieChart,
   },
   data() {
     return {

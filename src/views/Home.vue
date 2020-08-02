@@ -2,28 +2,29 @@
   <div class="charts-container">
     <ul>
       <li>
-        <a target="blank"
-          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/BasicBarChart.vue">基础柱状图</a>
         <basic-bar-chart>
         </basic-bar-chart>
+        <a target="blank"
+          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/BasicBarChart.vue">🔗</a>
       </li>
       <li>
-        <a target="blank"
-          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/BasicPieChart.vue">基础饼图</a>
         <basic-pie-chart>
         </basic-pie-chart>
+        <a target="blank"
+          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/BasicPieChart.vue">🔗</a>
       </li>
       <li>
-        <a target="blank"
-          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/LiquidfillChart.vue">水球</a>
         <liquidfill-chart>
         </liquidfill-chart>
+        <a target="blank"
+          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/LiquidfillChart.vue">🔗</a>
       </li>
       <li>
-        <a target="blank"
-          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/ProgressbarChart.vue">进度条</a>
         <progressbar-chart>
         </progressbar-chart>
+        <a target="blank"
+          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/ProgressbarChart.vue">🔗</a>
+
       </li>
       <div class="clear"></div>
     </ul>
@@ -64,7 +65,7 @@ export default {
     overflow: hidden;
     margin: 0 -10px;
     li {
-      width: 33.3%;
+      width: 25%;
       float: left;
       box-sizing: border-box;
       padding: 0 10px;
@@ -74,11 +75,41 @@ export default {
         height: 240px;
       }
       a {
-        font-size: 24px;
+        font-size: 18px;
         color: #409eff;
         font-weight: bold;
         display: block;
         margin-bottom: 10px;
+        line-height: 20px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 1200px) {
+  .charts-container {
+    ul {
+      li {
+        width: 33.3%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1002px) {
+  .charts-container {
+    ul {
+      li {
+        width: 50%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 758px) {
+  .charts-container {
+    ul {
+      li {
+        width: 100%;
       }
     }
   }

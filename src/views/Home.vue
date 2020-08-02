@@ -14,6 +14,12 @@
           href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/BasicBarChart.vue">🔗</a>
       </li>
       <li>
+        <double-bar-chart>
+        </double-bar-chart>
+        <a target="blank"
+          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/DoubleBarChart.vue">🔗</a>
+      </li>
+      <li>
         <basic-pie-chart>
         </basic-pie-chart>
         <a target="blank"
@@ -38,6 +44,7 @@
 
 <script>
 import BasicLineChart from '@/components/BasicLineChart.vue'
+import DoubleBarChart from '@/components/DoubleBarChart.vue'
 import BasicBarChart from '@/components/BasicBarChart.vue'
 import BasicPieChart from '@/components/BasicPieChart.vue'
 import LiquidfillChart from '@/components/LiquidfillChart.vue'
@@ -48,6 +55,7 @@ export default {
   components: {
     BasicLineChart,
     BasicPieChart,
+    DoubleBarChart,
     BasicBarChart,
     ProgressbarChart,
     LiquidfillChart,
@@ -55,6 +63,7 @@ export default {
   data() {
     return {
       color: ['#52FB6B', '#A152FB', '#52BDFB', '#FBED52', '#FB5252'],
+      // ['#4390ee', '#ff8604', '#71EC00']
     }
   },
 }

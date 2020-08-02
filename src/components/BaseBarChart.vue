@@ -3,7 +3,7 @@
  * @Email: 15901450207@163.com
  * @Date: 2020-08-01 12:11:07
  * @LastEditors: liuzhenghe
- * @LastEditTime: 2020-08-02 10:11:48
+ * @LastEditTime: 2020-08-02 10:14:24
  * @Descripttion: 基础柱状图
 --> 
 <template>
@@ -63,7 +63,7 @@ export default {
     drawChart() {
       let chartDOM = this.$refs.BaseBarChart
       if (!chartDOM) {
-        console.error(`echarts init dom ref BaseBarChart failed`)
+        console.error(`echarts init dom failed`)
         return false
       } else {
         this.chartData.name = this.chartData.data.map((item) => item.name)

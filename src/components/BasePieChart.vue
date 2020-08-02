@@ -3,18 +3,18 @@
  * @Email: 15901450207@163.com
  * @Date: 2020-07-26 09:32:45
  * @LastEditors: liuzhenghe
- * @LastEditTime: 2020-08-01 11:10:30
+ * @LastEditTime: 2020-08-02 10:19:05
  * @Descripttion: 基础饼图
 --> 
 <template>
-  <div ref="PieChart" class="chart">
+  <div ref="BasePieChart" class="chart">
   </div>
 </template>
 
 <script>
 import echarts from 'echarts'
 export default {
-  name: 'PieChart',
+  name: 'BasePieChart',
   components: {},
   data() {
     return {
@@ -32,7 +32,7 @@ export default {
             name: '谷歌',
             value: 300,
           },
-        ]
+        ],
       },
     }
   },
@@ -58,24 +58,26 @@ export default {
   methods: {
     // 绘制图表
     drawChart() {
-      let chart = echarts.init(this.$refs.PieChart)
-      if (chart === undefined) {
-        console.error(`echarts init dom ref ${this.$refs.PieChart} failed`)
-        return
+      let chartDOM = this.$refs.BasePieChart
+      if (!chartDOM) {
+        console.error(`echarts init dom failed`)
+        return false
+      } else {
+        // 处理数据
+        let valArr = this.chartData.data.map((item) => item.value)
+        this.chartData.total = eval(valArr.join('+'))
+        let chart = echarts.init(this.$refs.BasePieChart)
+        chart.setOption(this.chartOption())
+        let work = null
+        window.addEventListener('resize', () => {
+          if (work == null) {
+            work = setTimeout(() => {
+              chart.resize()
+              work = null
+            }, 100)
+          }
+        })
       }
-      // 处理数据
-      let valArr = this.chartData.data.map((item) => item.value)
-      this.chartData.total = eval(valArr.join('+'))
-      chart.setOption(this.chartOption())
-      let work = null
-      window.addEventListener('resize', () => {
-        if (work == null) {
-          work = setTimeout(() => {
-            chart.resize()
-            work = null
-          }, 100)
-        }
-      })
     },
     // 图表配置
     chartOption() {

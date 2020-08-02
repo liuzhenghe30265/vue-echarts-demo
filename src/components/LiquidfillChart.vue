@@ -3,7 +3,7 @@
  * @Email: 15901450207@163.com
  * @Date: 2020-07-28 09:55:52
  * @LastEditors: liuzhenghe
- * @LastEditTime: 2020-08-01 11:24:54
+ * @LastEditTime: 2020-08-02 10:21:07
  * @Descripttion: 水球
 --> 
 <template>
@@ -48,23 +48,23 @@ export default {
   methods: {
     // 绘制图表
     drawChart() {
-      let chart = echarts.init(this.$refs.LiquidfillChart)
-      if (chart === undefined) {
-        console.error(
-          `echarts init dom id ${this.$refs.LiquidfillChart} failed`
-        )
-        return
+      let chartDOM = this.$refs.LiquidfillChart
+      if (!chartDOM) {
+        console.error(`echarts init dom failed`)
+        return false
+      } else {
+        let chart = echarts.init(this.$refs.LiquidfillChart)
+        chart.setOption(this.chartOption())
+        let work = null
+        window.addEventListener('resize', () => {
+          if (work == null) {
+            work = setTimeout(() => {
+              chart.resize()
+              work = null
+            }, 100)
+          }
+        })
       }
-      chart.setOption(this.chartOption())
-      let work = null
-      window.addEventListener('resize', () => {
-        if (work == null) {
-          work = setTimeout(() => {
-            chart.resize()
-            work = null
-          }, 100)
-        }
-      })
     },
     // 图表配置
     chartOption() {

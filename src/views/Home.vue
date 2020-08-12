@@ -37,33 +37,40 @@
         <a target="blank"
           href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/ProgressbarChart.vue">🔗</a>
       </li>
+      <li>
+        <pictorial-bar-chart>
+        </pictorial-bar-chart>
+        <a target="blank"
+          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/PictorialBarChart.vue">🔗</a>
+      </li>
       <div class="clear"></div>
     </ul>
   </div>
 </template>
 
 <script>
-import BasicLineChart from '@/components/BasicLineChart.vue'
+/* eslint-disable vue/no-unused-components */
+import PictorialBarChart from '@/components/PictorialBarChart.vue'
+import ProgressbarChart from '@/components/ProgressbarChart.vue'
+import LiquidfillChart from '@/components/LiquidfillChart.vue'
+import BasicPieChart from '@/components/BasicPieChart.vue'
 import DoubleBarChart from '@/components/DoubleBarChart.vue'
 import BasicBarChart from '@/components/BasicBarChart.vue'
-import BasicPieChart from '@/components/BasicPieChart.vue'
-import LiquidfillChart from '@/components/LiquidfillChart.vue'
-import ProgressbarChart from '@/components/ProgressbarChart.vue'
-
+import BasicLineChart from '@/components/BasicLineChart.vue'
 export default {
   name: 'Home',
   components: {
-    BasicLineChart,
+    PictorialBarChart,
+    ProgressbarChart,
+    LiquidfillChart,
     BasicPieChart,
     DoubleBarChart,
     BasicBarChart,
-    ProgressbarChart,
-    LiquidfillChart,
+    BasicLineChart
   },
   data() {
     return {
-      color: ['#52FB6B', '#A152FB', '#52BDFB', '#FBED52', '#FB5252'],
-      // ['#4390ee', '#ff8604', '#71EC00']
+      color: ['#52FB6B', '#A152FB', '#52BDFB', '#FBED52', '#FB5252']
     }
   },
 }

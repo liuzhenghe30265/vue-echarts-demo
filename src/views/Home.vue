@@ -43,6 +43,12 @@
         <a target="blank"
           href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/PictorialBarChart.vue">🔗</a>
       </li>
+      <li>
+        <customized-radar-chart>
+        </customized-radar-chart>
+        <a target="blank"
+          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/CustomizedRadarChart.vue">🔗</a>
+      </li>
       <div class="clear"></div>
     </ul>
   </div>
@@ -50,6 +56,7 @@
 
 <script>
 /* eslint-disable vue/no-unused-components */
+import CustomizedRadarChart from '@/components/CustomizedRadarChart.vue'
 import PictorialBarChart from '@/components/PictorialBarChart.vue'
 import ProgressbarChart from '@/components/ProgressbarChart.vue'
 import LiquidfillChart from '@/components/LiquidfillChart.vue'
@@ -60,6 +67,7 @@ import BasicLineChart from '@/components/BasicLineChart.vue'
 export default {
   name: 'Home',
   components: {
+    CustomizedRadarChart,
     PictorialBarChart,
     ProgressbarChart,
     LiquidfillChart,

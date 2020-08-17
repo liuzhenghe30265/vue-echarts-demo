@@ -3,7 +3,7 @@
  * @Email: 15901450207@163.com
  * @Date: 2020-08-01 12:11:07
  * @LastEditors: liuzhenghe
- * @LastEditTime: 2020-08-02 11:29:57
+ * @LastEditTime: 2020-08-17 18:02:05
  * @Descripttion: 基础柱状图
 --> 
 <template>
@@ -38,16 +38,19 @@ export default {
           {
             name: '数据1',
             type: 'bar',
+            barWidth: 16,
             data: [320, 332, 301, 334, 390],
           },
           {
             name: '数据2',
             type: 'bar',
+            barWidth: 16,
             data: [220, 182, 300, 234, 190],
           },
           {
             name: '数据3',
             type: 'bar',
+            barWidth: 16,
             data: [150, 232, 100, 154, 190],
           },
         ],
@@ -57,7 +60,7 @@ export default {
   mounted() {
     this.drawChart()
   },
-  created() {},
+  created() { },
   methods: {
     // 绘制图表
     drawChart() {
@@ -104,31 +107,54 @@ export default {
         xAxis: {
           type: 'category',
           data: ['1月', '2月', '3月'],
-          //   x 轴文字颜色
+          // 轴
+          axisLine: {
+            show: true,
+            lineStyle: {
+              color: '#52FB6B'
+            }
+          },
+          // 轴标注
           axisLabel: {
             textStyle: {
               color: '#333',
               fontSize: 12,
             },
           },
+          // 轴分割线
+          splitLine: {
+            show: true,
+            lineStyle: {
+              color: '#52FB6B',
+              type: 'solid'
+            }
+          }
         },
         yAxis: {
           name: '个',
           type: 'value',
-          //   y 轴文字颜色
+          // 轴
+          axisLine: {
+            show: true,
+            lineStyle: {
+              color: '#52FB6B'
+            }
+          },
+          // 轴标注
           axisLabel: {
             textStyle: {
               color: '#333',
               fontSize: 12,
             },
           },
-          //   y 轴坐标线
+          // 轴分割线
           splitLine: {
+            show: true,
             lineStyle: {
-              color: '#333',
-              type: 'dashed',
-            },
-          },
+              color: '#52FB6B',
+              type: 'solid'
+            }
+          }
         },
         series: this.chartData.data,
       }

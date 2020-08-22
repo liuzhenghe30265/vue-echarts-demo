@@ -3,11 +3,12 @@
  * @Email: 15901450207@163.com
  * @Date: 2020-07-26 09:32:45
  * @LastEditors: liuzhenghe
- * @LastEditTime: 2020-08-02 10:19:05
+ * @LastEditTime: 2020-08-22 10:58:52
  * @Descripttion: 基础饼图
 --> 
 <template>
-  <div ref="BasicPieChart" class="chart">
+  <div ref="BasicPieChart"
+       class="chart">
   </div>
 </template>
 
@@ -15,7 +16,19 @@
 import echarts from 'echarts'
 export default {
   name: 'BasicPieChart',
-  components: {},
+  props: {
+    value: {
+      type: Array,
+      default() {
+        return []
+      },
+    },
+  },
+  watch: {
+    value: function (newV, oldV) {
+      this.drawChart()
+    },
+  },
   data() {
     return {
       chartData: {
@@ -36,22 +49,6 @@ export default {
       },
     }
   },
-  watch: {
-    // chartData: {
-    //   handler: (val, oldVal) => {
-    //     this.drawChart()
-    //   },
-    //   deep: true,
-    // },
-  },
-  props: {
-    // chartData: {
-    //   type: Array,
-    //   default() {
-    //     return []
-    //   },
-    // },
-  },
   mounted() {
     this.drawChart()
   },
@@ -60,11 +57,12 @@ export default {
     drawChart() {
       let chartDOM = this.$refs.BasicPieChart
       if (!chartDOM) {
-        console.error(`echarts init dom failed`)
+        console.error('echarts init dom failed')
         return false
       } else {
         // 处理数据
-        let valArr = this.chartData.data.map((item) => item.value)
+        // this.chartData.data = this.value
+        let valArr = this.chartData.data.map(item => item.value)
         this.chartData.total = eval(valArr.join('+'))
         let chart = echarts.init(this.$refs.BasicPieChart)
         chart.setOption(this.chartOption())
@@ -102,7 +100,7 @@ export default {
           itemGap: 20,
           data: _this.chartData.data,
           // 格式化图例文字
-          formatter: (name) => {
+          formatter: name => {
             const resObj = {}
             for (let i = 0; i < _this.chartData.data.length; i++) {
               resObj[_this.chartData.data[i]['name']] = _this.chartData.data[i]

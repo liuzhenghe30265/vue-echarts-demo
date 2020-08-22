@@ -3,12 +3,12 @@
  * @Email: 15901450207@163.com
  * @Date: 2020-08-01 12:11:07
  * @LastEditors: liuzhenghe
- * @LastEditTime: 2020-08-02 16:46:39
+ * @LastEditTime: 2020-08-22 10:54:01
  * @Descripttion: 双柱状图
 --> 
 <template>
   <div ref="DoubleBarChart"
-    class="chart" />
+       class="chart" />
 </template>
 
 <script>
@@ -16,20 +16,17 @@ import echarts from 'echarts'
 export default {
   name: 'DoubleBarChart',
   props: {
-    // data: {
-    //   type: Array,
-    //   default() {
-    //     return []
-    //   }
-    // }
+    value: {
+      type: Object,
+      default() {
+        return {}
+      },
+    },
   },
   watch: {
-    // data: {
-    //   handler: function(val, oldVal) {
-    //     this.drawChart()
-    //   },
-    //   deep: true
-    // }
+    value: function (newV, oldV) {
+      this.drawChart()
+    },
   },
   data() {
     return {
@@ -77,15 +74,14 @@ export default {
     drawChart() {
       let chartDOM = this.$refs.DoubleBarChart
       if (!chartDOM) {
-        console.error(`echarts init dom failed`)
+        console.error('echarts init dom failed')
         return false
       } else {
-        this.chartData.age = this.chartData.femal.map((item) => item.age)
-        this.chartData.femalCount = this.chartData.femal.map(
-          (item) => item.count
-        )
-        this.chartData.maleCount = this.chartData.male.map((item) => item.count)
-        this.chartData.age = this.chartData.femal.map((item) => item.age)
+        // this.chartData = this.value
+        this.chartData.age = this.chartData.femal.map(item => item.age)
+        this.chartData.femalCount = this.chartData.femal.map(item => item.count)
+        this.chartData.maleCount = this.chartData.male.map(item => item.count)
+        this.chartData.age = this.chartData.femal.map(item => item.age)
         const allCounts = this.chartData.femalCount.concat(
           this.chartData.maleCount
         )

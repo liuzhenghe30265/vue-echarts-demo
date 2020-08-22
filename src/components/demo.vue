@@ -3,12 +3,12 @@
  * @Email: 15901450207@163.com
  * @Date: 2020-08-01 12:11:07
  * @LastEditors: liuzhenghe
- * @LastEditTime: 2020-08-02 10:43:15
+ * @LastEditTime: 2020-08-22 11:11:22
  * @Descripttion: 基础柱状图
 --> 
 <template>
   <div ref="demo"
-    class="chart" />
+       class="chart" />
 </template>
 
 <script>
@@ -16,20 +16,17 @@ import echarts from 'echarts'
 export default {
   name: 'demo',
   props: {
-    // data: {
-    //   type: Array,
-    //   default() {
-    //     return []
-    //   }
-    // }
+    value: {
+      type: Array,
+      default() {
+        return []
+      },
+    },
   },
   watch: {
-    // data: {
-    //   handler: function(val, oldVal) {
-    //     this.drawChart()
-    //   },
-    //   deep: true
-    // }
+    value: function (newV, oldV) {
+      this.drawChart()
+    },
   },
   data() {
     return {
@@ -38,16 +35,19 @@ export default {
           {
             name: '数据1',
             type: 'bar',
+            barWidth: 16,
             data: [320, 332, 301, 334, 390],
           },
           {
             name: '数据2',
             type: 'bar',
+            barWidth: 16,
             data: [220, 182, 300, 234, 190],
           },
           {
             name: '数据3',
             type: 'bar',
+            barWidth: 16,
             data: [150, 232, 100, 154, 190],
           },
         ],
@@ -63,10 +63,11 @@ export default {
     drawChart() {
       let chartDOM = this.$refs.demo
       if (!chartDOM) {
-        console.error(`echarts init dom failed`)
+        console.error('echarts init dom failed')
         return false
       } else {
-        this.chartData.name = this.chartData.data.map((item) => item.name)
+        // this.chartData.data = this.value
+        this.chartData.name = this.chartData.data.map(item => item.name)
         let chart = echarts.init(this.$refs.demo)
         chart.setOption(this.chartOption())
         let work = null
@@ -93,7 +94,7 @@ export default {
           right: 0,
         },
         grid: {
-          top: '25%',
+          top: '35%',
           left: '5%',
           right: '5%',
           bottom: '10%',
@@ -104,28 +105,52 @@ export default {
         xAxis: {
           type: 'category',
           data: ['1月', '2月', '3月'],
-          //   x 轴文字颜色
+          // 轴
+          axisLine: {
+            show: true,
+            lineStyle: {
+              // color: '#52FB6B',
+            },
+          },
+          // 轴标注
           axisLabel: {
             textStyle: {
               color: '#333',
               fontSize: 12,
+            },
+          },
+          // 轴分割线
+          splitLine: {
+            show: true,
+            lineStyle: {
+              // color: '#52FB6B',
+              type: 'solid',
             },
           },
         },
         yAxis: {
+          name: '个',
           type: 'value',
-          //   y 轴文字颜色
+          // 轴
+          axisLine: {
+            show: true,
+            lineStyle: {
+              // color: '#52FB6B',
+            },
+          },
+          // 轴标注
           axisLabel: {
             textStyle: {
               color: '#333',
               fontSize: 12,
             },
           },
-          //   y 轴坐标线
+          // 轴分割线
           splitLine: {
+            show: true,
             lineStyle: {
-              color: '#333',
-              type: 'dashed',
+              // color: '#52FB6B',
+              type: 'solid',
             },
           },
         },

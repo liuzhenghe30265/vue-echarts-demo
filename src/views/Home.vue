@@ -5,49 +5,49 @@
         <basic-line-chart>
         </basic-line-chart>
         <a target="blank"
-          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/BasicLineChart.vue">🔗</a>
+           href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/BasicLineChart.vue">🔗</a>
       </li>
       <li>
         <basic-bar-chart>
         </basic-bar-chart>
         <a target="blank"
-          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/BasicBarChart.vue">🔗</a>
+           href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/BasicBarChart.vue">🔗</a>
       </li>
       <li>
         <double-bar-chart>
         </double-bar-chart>
         <a target="blank"
-          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/DoubleBarChart.vue">🔗</a>
+           href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/DoubleBarChart.vue">🔗</a>
       </li>
       <li>
         <basic-pie-chart>
         </basic-pie-chart>
         <a target="blank"
-          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/BasicPieChart.vue">🔗</a>
+           href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/BasicPieChart.vue">🔗</a>
       </li>
       <li>
         <liquidfill-chart>
         </liquidfill-chart>
         <a target="blank"
-          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/LiquidfillChart.vue">🔗</a>
+           href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/LiquidfillChart.vue">🔗</a>
       </li>
       <li>
         <progressbar-chart>
         </progressbar-chart>
         <a target="blank"
-          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/ProgressbarChart.vue">🔗</a>
+           href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/ProgressbarChart.vue">🔗</a>
       </li>
       <li>
         <pictorial-bar-chart>
         </pictorial-bar-chart>
         <a target="blank"
-          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/PictorialBarChart.vue">🔗</a>
+           href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/PictorialBarChart.vue">🔗</a>
       </li>
-      <li>
+      <li class="show">
         <customized-radar-chart>
         </customized-radar-chart>
         <a target="blank"
-          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/CustomizedRadarChart.vue">🔗</a>
+           href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/CustomizedRadarChart.vue">🔗</a>
       </li>
       <div class="clear"></div>
     </ul>
@@ -74,11 +74,33 @@ export default {
     BasicPieChart,
     DoubleBarChart,
     BasicBarChart,
-    BasicLineChart
+    BasicLineChart,
   },
   data() {
     return {
-      color: ['#52FB6B', '#A152FB', '#52BDFB', '#FBED52', '#FB5252']
+      chartData: [
+        {
+          name: '数据13',
+          value: [1, 200],
+        },
+        {
+          name: '数据2',
+          value: [400, 500],
+        },
+        {
+          name: '数据3',
+          value: [700, 800],
+        },
+        {
+          name: '数据4',
+          value: [1000, 1100],
+        },
+        {
+          name: '数据5',
+          value: [100, 200],
+        },
+      ],
+      color: ['#52FB6B', '#A152FB', '#52BDFB', '#FBED52', '#FB5252'],
     }
   },
 }
@@ -101,6 +123,10 @@ export default {
       box-sizing: border-box;
       padding: 0 10px;
       margin-bottom: 20px;
+      // display: none;
+      &.show {
+        display: block;
+      }
       .chart {
         width: 100%;
         height: 240px;

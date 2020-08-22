@@ -3,12 +3,12 @@
  * @Email: 15901450207@163.com
  * @Date: 2020-07-28 09:55:52
  * @LastEditors: liuzhenghe
- * @LastEditTime: 2020-08-02 10:21:07
+ * @LastEditTime: 2020-08-22 11:00:26
  * @Descripttion: 水球
 --> 
 <template>
   <div ref="LiquidfillChart"
-    class="chart"></div>
+       class="chart"></div>
 </template>
 
 <script>
@@ -16,7 +16,19 @@ import echarts from 'echarts'
 import 'echarts-liquidfill'
 export default {
   name: 'LiquidfillChart',
-  components: {},
+  props: {
+    value: {
+      type: Object,
+      default() {
+        return {}
+      },
+    },
+  },
+  watch: {
+    value: function (newV, oldV) {
+      this.drawChart()
+    },
+  },
   data() {
     return {
       chartData: {
@@ -26,22 +38,6 @@ export default {
       },
     }
   },
-  watch: {
-    // chartData: {
-    //   handler: (val, oldVal) => {
-    //     this.drawChart()
-    //   },
-    //   deep: true,
-    // },
-  },
-  props: {
-    // chartData: {
-    //   type: Array,
-    //   default() {
-    //     return []
-    //   },
-    // },
-  },
   mounted() {
     this.drawChart()
   },
@@ -50,9 +46,10 @@ export default {
     drawChart() {
       let chartDOM = this.$refs.LiquidfillChart
       if (!chartDOM) {
-        console.error(`echarts init dom failed`)
+        console.error('echarts init dom failed')
         return false
       } else {
+        // this.chartData = this.value
         let chart = echarts.init(this.$refs.LiquidfillChart)
         chart.setOption(this.chartOption())
         let work = null

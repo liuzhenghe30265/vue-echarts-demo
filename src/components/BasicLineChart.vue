@@ -3,12 +3,12 @@
  * @Email: 15901450207@163.com
  * @Date: 2020-08-01 12:11:07
  * @LastEditors: liuzhenghe
- * @LastEditTime: 2020-08-02 11:34:02
+ * @LastEditTime: 2020-08-22 10:45:35
  * @Descripttion: 基础折线图
 --> 
 <template>
   <div ref="BasicLineChart"
-    class="chart" />
+       class="chart"></div>
 </template>
 
 <script>
@@ -16,20 +16,17 @@ import echarts from 'echarts'
 export default {
   name: 'BasicLineChart',
   props: {
-    // data: {
-    //   type: Array,
-    //   default() {
-    //     return []
-    //   }
-    // }
+    value: {
+      type: Array,
+      default() {
+        return []
+      },
+    },
   },
   watch: {
-    // data: {
-    //   handler: function(val, oldVal) {
-    //     this.drawChart()
-    //   },
-    //   deep: true
-    // }
+    value: function (newV, oldV) {
+      this.drawChart()
+    },
   },
   data() {
     return {
@@ -61,10 +58,11 @@ export default {
     drawChart() {
       let chartDOM = this.$refs.BasicLineChart
       if (!chartDOM) {
-        console.error(`echarts init dom failed`)
+        console.error('echarts init dom failed')
         return false
       } else {
-        this.chartData.name = this.chartData.data.map((item) => item.name)
+        // this.chartData.data = this.value
+        this.chartData.name = this.chartData.data.map(item => item.name)
         let chart = echarts.init(this.$refs.BasicLineChart)
         chart.setOption(this.chartOption())
         let work = null
@@ -88,8 +86,8 @@ export default {
           left: 'left',
         },
         legend: {
-          itemHeight: 2,
-          itemWidth: 14,
+          // itemHeight: 2,
+          // itemWidth: 14,
           data: this.chartData.data,
           textStyle: {
             color: ' #222',

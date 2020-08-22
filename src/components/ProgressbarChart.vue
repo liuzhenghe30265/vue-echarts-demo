@@ -3,19 +3,31 @@
  * @Email: 15901450207@163.com
  * @Date: 2020-07-30 15:10:39
  * @LastEditors: liuzhenghe
- * @LastEditTime: 2020-08-19 14:12:23
+ * @LastEditTime: 2020-08-22 11:04:02
  * @Descripttion: 进度条效果
 --> 
 <template>
   <div ref="ProgressbarChart"
-    class="chart"></div>
+       class="chart"></div>
 </template>
 <script>
 import echarts from 'echarts'
 import bg from '@/assets/bgi.png'
 export default {
   name: 'ProgressbarChart',
-  components: {},
+  props: {
+    value: {
+      type: Array,
+      default() {
+        return []
+      },
+    },
+  },
+  watch: {
+    value: function (newV, oldV) {
+      this.drawChart()
+    },
+  },
   data() {
     return {
       chartData: {
@@ -29,56 +41,42 @@ export default {
       },
     }
   },
-  watch: {
-    // chartData: {
-    //   handler: (val, oldVal) => {
-    //     this.drawChart()
-    //   },
-    //   deep: true,
-    // },
-  },
-  props: {
-    // chartData: {
-    //   type: Object,
-    //   default() {
-    //     return {}
-    //   },
-    // },
-  },
   mounted() {
     this.drawChart()
   },
   methods: {
     // 绘制图表
     drawChart() {
-      let chart = echarts.init(this.$refs.ProgressbarChart)
-      if (chart === undefined) {
-        console.error(
-          `echarts init dom ref ${this.$refs.ProgressbarChart} failed`
+      let chartDOM = this.$refs.ProgressbarChart
+      if (!chartDOM) {
+        console.error('echarts init dom failed')
+        return false
+      } else {
+        // this.chartData.data = this.value
+        this.chartData.name = this.chartData.data.map(_ => _.name)
+        this.chartData.count = this.chartData.data.map(_ => _.count)
+        this.chartData.max = Math.max(...this.chartData.count)
+        this.chartData.pictorialBar = this.chartData.data.map(
+          (d, index, arr) => {
+            return {
+              name: d.name,
+              value: +this.chartData.max + 20,
+              symbol: `image://${bg}`,
+            }
+          }
         )
-        return
+        let chart = echarts.init(this.$refs.ProgressbarChart)
+        chart.setOption(this.chartOption())
+        let work = null
+        window.addEventListener('resize', () => {
+          if (work == null) {
+            work = setTimeout(() => {
+              chart.resize()
+              work = null
+            }, 100)
+          }
+        })
       }
-      // 处理数据
-      this.chartData.name = this.chartData.data.map((_) => _.name)
-      this.chartData.count = this.chartData.data.map((_) => _.count)
-      this.chartData.max = Math.max(...this.chartData.count)
-      this.chartData.pictorialBar = this.chartData.data.map((d, index, arr) => {
-        return {
-          name: d.name,
-          value: +this.chartData.max + 20,
-          symbol: `image://${bg}`,
-        }
-      })
-      chart.setOption(this.chartOption())
-      let work = null
-      window.addEventListener('resize', () => {
-        if (work == null) {
-          work = setTimeout(() => {
-            chart.resize()
-            work = null
-          }, 100)
-        }
-      })
     },
     // 图表配置
     chartOption() {
@@ -151,7 +149,7 @@ export default {
               // 文字对齐方式
               textStyle: {
                 align: 'right',
-                baseline: 'middle'
+                baseline: 'middle',
               },
               // formatter: function (value) {
               //   return '{' + value + '| }\n{value|' + value + '}';

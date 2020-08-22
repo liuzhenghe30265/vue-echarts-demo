@@ -3,12 +3,12 @@
  * @Email: 15901450207@163.com
  * @Date: 2020-08-13 16:40:29
  * @LastEditors: liuzhenghe
- * @LastEditTime: 2020-08-14 17:58:58
+ * @LastEditTime: 2020-08-22 11:10:08
  * @Descripttion: 自定义雷达图
 -->
 <template>
   <div ref="CustomizedRadarChart"
-    class="chart" />
+       class="chart" />
 </template>
 
 <script>
@@ -16,20 +16,17 @@ import echarts from 'echarts'
 export default {
   name: 'CustomizedRadarChart',
   props: {
-    // data: {
-    //   type: Array,
-    //   default() {
-    //     return []
-    //   }
-    // }
+    value: {
+      type: Array,
+      default() {
+        return []
+      },
+    },
   },
   watch: {
-    // data: {
-    //   handler: function(val, oldVal) {
-    //     this.drawChart()
-    //   },
-    //   deep: true
-    // }
+    value: function (newV, oldV) {
+      this.drawChart()
+    },
   },
   data() {
     return {
@@ -37,40 +34,41 @@ export default {
         data: [
           {
             name: '数据1',
-            value: [100, 200]
+            value: [100, 200],
           },
           {
             name: '数据2',
-            value: [400, 500]
+            value: [400, 500],
           },
           {
             name: '数据3',
-            value: [700, 800]
+            value: [700, 800],
           },
           {
             name: '数据4',
-            value: [1000, 1100]
+            value: [1000, 1100],
           },
           {
             name: '数据5',
-            value: [100, 200]
-          }
-        ]
-      }
+            value: [100, 200],
+          },
+        ],
+      },
     }
   },
   mounted() {
     this.drawChart()
   },
-  created() { },
+  created() {},
   methods: {
     // 绘制图表
     drawChart() {
       let chartDOM = this.$refs.CustomizedRadarChart
       if (!chartDOM) {
-        console.error(`echarts init dom failed`)
+        console.error('echarts init dom failed')
         return false
       } else {
+        // this.chartData.data = this.value
         let chart = echarts.init(this.$refs.CustomizedRadarChart)
         chart.setOption(this.chartOption())
         let work = null
@@ -89,11 +87,11 @@ export default {
       let _this = this
       return {
         title: {
-          show: false
+          show: false,
         },
         tooltip: {
           trigger: 'none',
-          confine: true
+          confine: true,
         },
         legend: {
           show: false,
@@ -103,8 +101,8 @@ export default {
           right: '5%',
           textStyle: {
             color: 'rgba(255,255,255,.6)',
-            fontSize: 12
-          }
+            fontSize: 12,
+          },
         },
         radar: {
           name: {
@@ -119,7 +117,7 @@ export default {
                 fontSize: 14,
                 padding: 5,
                 fontWeight: 'bold',
-                align: 'left'
+                align: 'left',
               },
               a1: {
                 color: '#0A1228',
@@ -127,7 +125,7 @@ export default {
                 fontSize: 14,
                 padding: 5,
                 fontWeight: 'bold',
-                align: 'left'
+                align: 'left',
               },
               a2: {
                 color: '#0A1228',
@@ -135,7 +133,7 @@ export default {
                 fontSize: 14,
                 padding: 5,
                 fontWeight: 'bold',
-                align: 'left'
+                align: 'left',
               },
               a3: {
                 color: '#0A1228',
@@ -143,7 +141,7 @@ export default {
                 fontSize: 14,
                 padding: 5,
                 fontWeight: 'bold',
-                align: 'left'
+                align: 'left',
               },
               a4: {
                 color: '#0A1228',
@@ -151,16 +149,16 @@ export default {
                 fontSize: 14,
                 padding: 5,
                 fontWeight: 'bold',
-                align: 'left'
+                align: 'left',
               },
               b: {
                 color: '#AED8E5',
                 fontWeight: 'bold',
                 fontSize: 12,
                 padding: [5, 0],
-                align: 'left'
-              }
-            }
+                align: 'left',
+              },
+            },
           },
           nameGap: 5,
           radius: '70%',
@@ -170,21 +168,21 @@ export default {
           splitArea: {
             show: true,
             areaStyle: {
-              color: ['rgba(8,38,61,0.30)', 'rgba(8,38,61,0.30)']
-            }
+              color: ['rgba(8,38,61,0.30)', 'rgba(8,38,61,0.30)'],
+            },
           },
           axisLine: {
             lineStyle: {
               color: 'rgba(0,70,124,.6)',
-              type: 'dashed'
-            }
+              type: 'dashed',
+            },
           },
           splitLine: {
             lineStyle: {
               color: 'rgba(0,70,124,.6)',
-              type: 'dashed'
-            }
-          }
+              type: 'dashed',
+            },
+          },
         },
         series: [
           {
@@ -192,12 +190,12 @@ export default {
             data: this.chartData.data,
             label: {
               show: false,
-              color: '#727BFF'
+              color: '#727BFF',
             },
             symbol: 'circle',
             symbolSize: 8,
             itemStyle: {
-              color: '#FCEC2E'
+              color: '#FCEC2E',
             },
             lineStyle: {
               color: {
@@ -206,15 +204,18 @@ export default {
                 y: 0, // 下
                 x2: 1, // 左
                 y2: 1, // 上
-                colorStops: [{
-                  offset: 0,
-                  color: '#FCEC2E'
-                }, {
-                  offset: 1,
-                  color: '#00DDFF'
-                }],
-                globalCoord: false
-              }
+                colorStops: [
+                  {
+                    offset: 0,
+                    color: '#FCEC2E',
+                  },
+                  {
+                    offset: 1,
+                    color: '#00DDFF',
+                  },
+                ],
+                globalCoord: false,
+              },
             },
             areaStyle: {
               show: true,
@@ -224,22 +225,26 @@ export default {
                 y: 0, // 下
                 x2: 1, // 左
                 y2: 1, // 上
-                colorStops: [{
-                  offset: 0,
-                  color: 'rgba(252,236,46,.2)'
-                }, {
-                  offset: 0.5,
-                  color: 'transparent'
-                }, {
-                  offset: 1,
-                  color: 'rgba(0,221,255,.1)'
-                }],
-                globalCoord: false
-              }
+                colorStops: [
+                  {
+                    offset: 0,
+                    color: 'rgba(252,236,46,.2)',
+                  },
+                  {
+                    offset: 0.5,
+                    color: 'transparent',
+                  },
+                  {
+                    offset: 1,
+                    color: 'rgba(0,221,255,.1)',
+                  },
+                ],
+                globalCoord: false,
+              },
             },
-            animationDuration: 3000
-          }
-        ]
+            animationDuration: 3000,
+          },
+        ],
       }
     },
   },

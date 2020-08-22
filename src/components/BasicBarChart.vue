@@ -3,12 +3,12 @@
  * @Email: 15901450207@163.com
  * @Date: 2020-08-01 12:11:07
  * @LastEditors: liuzhenghe
- * @LastEditTime: 2020-08-17 18:02:05
+ * @LastEditTime: 2020-08-22 10:49:15
  * @Descripttion: 基础柱状图
 --> 
 <template>
   <div ref="BasicBarChart"
-    class="chart" />
+       class="chart" />
 </template>
 
 <script>
@@ -16,20 +16,17 @@ import echarts from 'echarts'
 export default {
   name: 'BasicBarChart',
   props: {
-    // data: {
-    //   type: Array,
-    //   default() {
-    //     return []
-    //   }
-    // }
+    value: {
+      type: Array,
+      default() {
+        return []
+      },
+    },
   },
   watch: {
-    // data: {
-    //   handler: function(val, oldVal) {
-    //     this.drawChart()
-    //   },
-    //   deep: true
-    // }
+    value: function (newV, oldV) {
+      this.drawChart()
+    },
   },
   data() {
     return {
@@ -60,16 +57,17 @@ export default {
   mounted() {
     this.drawChart()
   },
-  created() { },
+  created() {},
   methods: {
     // 绘制图表
     drawChart() {
       let chartDOM = this.$refs.BasicBarChart
       if (!chartDOM) {
-        console.error(`echarts init dom failed`)
+        console.error('echarts init dom failed')
         return false
       } else {
-        this.chartData.name = this.chartData.data.map((item) => item.name)
+        // this.chartData.data = this.value
+        this.chartData.name = this.chartData.data.map(item => item.name)
         let chart = echarts.init(this.$refs.BasicBarChart)
         chart.setOption(this.chartOption())
         let work = null
@@ -111,8 +109,8 @@ export default {
           axisLine: {
             show: true,
             lineStyle: {
-              color: '#52FB6B'
-            }
+              // color: '#52FB6B',
+            },
           },
           // 轴标注
           axisLabel: {
@@ -125,10 +123,10 @@ export default {
           splitLine: {
             show: true,
             lineStyle: {
-              color: '#52FB6B',
-              type: 'solid'
-            }
-          }
+              // color: '#52FB6B',
+              type: 'solid',
+            },
+          },
         },
         yAxis: {
           name: '个',
@@ -137,8 +135,8 @@ export default {
           axisLine: {
             show: true,
             lineStyle: {
-              color: '#52FB6B'
-            }
+              // color: '#52FB6B',
+            },
           },
           // 轴标注
           axisLabel: {
@@ -151,10 +149,10 @@ export default {
           splitLine: {
             show: true,
             lineStyle: {
-              color: '#52FB6B',
-              type: 'solid'
-            }
-          }
+              // color: '#52FB6B',
+              type: 'solid',
+            },
+          },
         },
         series: this.chartData.data,
       }

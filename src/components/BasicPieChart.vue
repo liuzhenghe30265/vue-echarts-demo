@@ -25,8 +25,11 @@ export default {
     },
   },
   watch: {
-    value: function (newV, oldV) {
-      this.drawChart()
+    value: {
+      immediate: true,
+      handler: function (val) {
+        this.drawChart()
+      }
     },
   },
   data() {
@@ -109,7 +112,7 @@ export default {
               name,
               resObj[name].value + ',',
               ((resObj[name].value / _this.chartData.total) * 100).toFixed(2) +
-                '%',
+              '%',
             ]
             return arr.join('')
           },

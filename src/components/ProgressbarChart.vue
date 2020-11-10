@@ -3,7 +3,7 @@
  * @Email: 15901450207@163.com
  * @Date: 2020-07-30 15:10:39
  * @LastEditors: liuzhenghe
- * @LastEditTime: 2020-08-22 11:04:02
+ * @LastEditTime: 2020-11-10 16:42:13
  * @Descripttion: 进度条效果
 --> 
 <template>
@@ -24,8 +24,11 @@ export default {
     },
   },
   watch: {
-    value: function (newV, oldV) {
-      this.drawChart()
+    value: {
+      immediate: true,
+      handler: function (val) {
+        this.drawChart()
+      }
     },
   },
   data() {

@@ -3,7 +3,7 @@
  * @Email: 15901450207@163.com
  * @Date: 2020-08-01 12:11:07
  * @LastEditors: liuzhenghe
- * @LastEditTime: 2020-08-22 10:49:15
+ * @LastEditTime: 2020-11-10 16:46:05
  * @Descripttion: 基础柱状图
 --> 
 <template>
@@ -24,8 +24,11 @@ export default {
     },
   },
   watch: {
-    value: function (newV, oldV) {
-      this.drawChart()
+    value: {
+      immediate: true,
+      handler: function (val) {
+        this.drawChart()
+      }
     },
   },
   data() {
@@ -57,7 +60,7 @@ export default {
   mounted() {
     this.drawChart()
   },
-  created() {},
+  created() { },
   methods: {
     // 绘制图表
     drawChart() {
@@ -84,6 +87,14 @@ export default {
     // 绘制图表
     chartOption() {
       return {
+        animation: true,
+        // 提示工具
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'shadow'
+          }
+        },
         title: {
           text: '数量统计',
           subtext: '小标题',

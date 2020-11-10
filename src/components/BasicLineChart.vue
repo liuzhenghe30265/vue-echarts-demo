@@ -3,7 +3,7 @@
  * @Email: 15901450207@163.com
  * @Date: 2020-08-01 12:11:07
  * @LastEditors: liuzhenghe
- * @LastEditTime: 2020-08-22 10:45:35
+ * @LastEditTime: 2020-11-10 16:47:46
  * @Descripttion: 基础折线图
 --> 
 <template>
@@ -24,8 +24,11 @@ export default {
     },
   },
   watch: {
-    value: function (newV, oldV) {
-      this.drawChart()
+    value: {
+      immediate: true,
+      handler: function (val) {
+        this.drawChart()
+      }
     },
   },
   data() {
@@ -79,6 +82,15 @@ export default {
     // 绘制图表
     chartOption() {
       return {
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'cross',
+            label: {
+              backgroundColor: '#6a7985'
+            }
+          }
+        },
         animation: true,
         title: {
           text: '数量统计',

@@ -25,8 +25,11 @@ export default {
     },
   },
   watch: {
-    value: function (newV, oldV) {
-      this.drawChart()
+    value: {
+      immediate: true,
+      handler: function (val) {
+        this.drawChart()
+      }
     },
   },
   data() {

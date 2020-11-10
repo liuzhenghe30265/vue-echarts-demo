@@ -2,7 +2,8 @@
   <div class="charts-container">
     <ul>
       <li>
-        <basic-line-chart>
+        <basic-line-chart
+                          :value="chartData">
         </basic-line-chart>
         <a target="blank"
            href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/BasicLineChart.vue">🔗</a>
@@ -80,24 +81,18 @@ export default {
     return {
       chartData: [
         {
-          name: '数据13',
-          value: [1, 200],
+          name: '数据1',
+          type: 'line',
+          smooth: true,
+          icon: 'rect',
+          data: [820, 932, 901, 934, 1290, 1330, 1320],
         },
         {
           name: '数据2',
-          value: [400, 500],
-        },
-        {
-          name: '数据3',
-          value: [700, 800],
-        },
-        {
-          name: '数据4',
-          value: [1000, 1100],
-        },
-        {
-          name: '数据5',
-          value: [100, 200],
+          type: 'line',
+          smooth: true,
+          // icon: 'rect',
+          data: [100, 200, 300, 400, 400, 500, 600],
         },
       ],
       color: ['#52FB6B', '#A152FB', '#52BDFB', '#FBED52', '#FB5252'],

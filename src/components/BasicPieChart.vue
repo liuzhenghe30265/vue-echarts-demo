@@ -3,7 +3,7 @@
  * @Email: 15901450207@163.com
  * @Date: 2020-07-26 09:32:45
  * @LastEditors: liuzhenghe
- * @LastEditTime: 2020-08-22 10:58:52
+ * @LastEditTime: 2020-11-18 11:35:45
  * @Descripttion: 基础饼图
 --> 
 <template>
@@ -60,11 +60,11 @@ export default {
     drawChart() {
       let chartDOM = this.$refs.BasicPieChart
       if (!chartDOM) {
-        console.error('echarts init dom failed')
+        console.warn('echarts init dom failed')
         return false
       } else {
         // 处理数据
-        // this.chartData.data = this.value
+        // this.chartData.data = this.value // 使用父组件传递的数据
         let valArr = this.chartData.data.map(item => item.value)
         this.chartData.total = eval(valArr.join('+'))
         let chart = echarts.init(this.$refs.BasicPieChart)
@@ -89,12 +89,19 @@ export default {
         tooltip: {
           trigger: 'item',
           formatter: '{a} <br/>{b}: {c} ({d}%)',
+          // 固定提示窗口
+          position: (point, params, dom, rect, size) => {
+            // return { left: 0, top: 0 }
+            // return [point[0], '10%']
+            // return [0, point[1]]
+            // return [point[1], 0]
+          },
         },
         // 图例
         legend: {
           show: true,
           orient: 'vertical',
-          icon: 'rect',
+          icon: 'rect', // circle, rect, line, roundRect, triangle, diamond, pin, arrow, none
           top: 'middle',
           left: 'middle',
           itemWidth: 20,
@@ -123,8 +130,8 @@ export default {
             type: 'pie',
             clockWise: true, // 顺时加载
             hoverAnimation: true, // 鼠标移入变大
-            radius: ['50%', '60%'],
-            // center: ['30%', '55%'],
+            radius: ['40%', '60%'], // 内外环大小
+            center: ['30%', '55%'], // 位置
             color: ['#52FB6B', '#A152FB', '#52BDFB'],
             avoidLabelOverlap: false,
             label: {

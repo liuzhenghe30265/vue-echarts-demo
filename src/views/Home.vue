@@ -2,51 +2,51 @@
   <div class="charts-container">
     <ul>
       <li>
-        <basic-line-chart
+        <BasicLineChart
                           :value="chartData">
-        </basic-line-chart>
+        </BasicLineChart>
         <a target="blank"
            href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/BasicLineChart.vue">🔗</a>
       </li>
       <li>
-        <basic-bar-chart>
-        </basic-bar-chart>
+        <BasicBarChart>
+        </BasicBarChart>
         <a target="blank"
            href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/BasicBarChart.vue">🔗</a>
       </li>
       <li>
-        <double-bar-chart>
-        </double-bar-chart>
+        <DoubleBarChart>
+        </DoubleBarChart>
         <a target="blank"
            href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/DoubleBarChart.vue">🔗</a>
       </li>
       <li>
-        <basic-pie-chart>
-        </basic-pie-chart>
+        <BasicPieChart>
+        </BasicPieChart>
         <a target="blank"
            href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/BasicPieChart.vue">🔗</a>
       </li>
       <li>
-        <liquidfill-chart>
-        </liquidfill-chart>
+        <LiquidfillChart>
+        </LiquidfillChart>
         <a target="blank"
            href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/LiquidfillChart.vue">🔗</a>
       </li>
       <li>
-        <progressbar-chart>
-        </progressbar-chart>
+        <ProgressbarChart>
+        </ProgressbarChart>
         <a target="blank"
            href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/ProgressbarChart.vue">🔗</a>
       </li>
       <li>
-        <pictorial-bar-chart>
-        </pictorial-bar-chart>
+        <PictorialBarChart>
+        </PictorialBarChart>
         <a target="blank"
            href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/PictorialBarChart.vue">🔗</a>
       </li>
-      <li class="show">
-        <customized-radar-chart>
-        </customized-radar-chart>
+      <li>
+        <CustomizedRadarChart>
+        </CustomizedRadarChart>
         <a target="blank"
            href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/CustomizedRadarChart.vue">🔗</a>
       </li>
@@ -56,7 +56,6 @@
 </template>
 
 <script>
-/* eslint-disable vue/no-unused-components */
 import CustomizedRadarChart from '@/components/CustomizedRadarChart.vue'
 import PictorialBarChart from '@/components/PictorialBarChart.vue'
 import ProgressbarChart from '@/components/ProgressbarChart.vue'

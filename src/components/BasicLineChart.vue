@@ -61,7 +61,7 @@ export default {
     drawChart() {
       let chartDOM = this.$refs.BasicLineChart
       if (!chartDOM) {
-        console.error('echarts init dom failed')
+        console.warn('echarts init dom failed')
         return false
       } else {
         // this.chartData.data = this.value

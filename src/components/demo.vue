@@ -3,12 +3,11 @@
  * @Email: 15901450207@163.com
  * @Date: 2020-08-01 12:11:07
  * @LastEditors: liuzhenghe
- * @LastEditTime: 2020-08-22 11:11:22
+ * @LastEditTime: 2020-11-21 15:51:59
  * @Descripttion: 基础柱状图
 --> 
 <template>
-  <div ref="demo"
-       class="chart" />
+  <div ref="demo" class="chart" />
 </template>
 
 <script>
@@ -24,7 +23,7 @@ export default {
     },
   },
   watch: {
-   value: {
+    value: {
       immediate: true,
       handler: function (val) {
         this.drawChart()
@@ -60,7 +59,7 @@ export default {
   mounted() {
     this.drawChart()
   },
-  created() {},
+  created() { },
   methods: {
     // 绘制图表
     drawChart() {

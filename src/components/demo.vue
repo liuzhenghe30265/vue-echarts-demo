@@ -3,7 +3,7 @@
  * @Email: 15901450207@163.com
  * @Date: 2020-08-01 12:11:07
  * @LastEditors: liuzhenghe
- * @LastEditTime: 2020-11-21 15:51:59
+ * @LastEditTime: 2020-11-21 16:22:08
  * @Descripttion: 基础柱状图
 --> 
 <template>

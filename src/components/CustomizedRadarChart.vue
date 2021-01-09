@@ -8,7 +8,7 @@
 -->
 <template>
   <div ref="CustomizedRadarChart"
-       class="chart" />
+    class="chart" />
 </template>
 
 <script>
@@ -61,6 +61,9 @@ export default {
   },
   mounted() {
     this.drawChart()
+    setInterval(() => {
+      this.drawChart()
+    }, 5000)
   },
   created() { },
   methods: {
@@ -73,6 +76,7 @@ export default {
       } else {
         // this.chartData.data = this.value
         let chart = echarts.init(this.$refs.CustomizedRadarChart)
+        chart.clear()
         chart.setOption(this.chartOption())
         let work = null
         window.addEventListener('resize', () => {

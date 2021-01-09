@@ -3,12 +3,12 @@
  * @Email: 15901450207@163.com
  * @Date: 2020-08-01 12:11:07
  * @LastEditors: liuzhenghe
- * @LastEditTime: 2020-11-10 16:46:05
+ * @LastEditTime: 2021-01-09 10:00:58
  * @Descripttion: 基础柱状图
 --> 
 <template>
   <div ref="BasicBarChart"
-       class="chart" />
+    class="chart" />
 </template>
 
 <script>
@@ -59,6 +59,9 @@ export default {
   },
   mounted() {
     this.drawChart()
+    setInterval(() => {
+      this.drawChart()
+    }, 5000)
   },
   created() { },
   methods: {
@@ -72,6 +75,7 @@ export default {
         // this.chartData.data = this.value
         this.chartData.name = this.chartData.data.map(item => item.name)
         let chart = echarts.init(this.$refs.BasicBarChart)
+        chart.clear()
         chart.setOption(this.chartOption())
         let work = null
         window.addEventListener('resize', () => {

@@ -58,6 +58,9 @@ export default {
   },
   mounted() {
     this.drawChart()
+    setInterval(() => {
+      this.drawChart()
+    }, 5000)
   },
   created() { },
   methods: {
@@ -71,6 +74,7 @@ export default {
         // this.chartData.data = this.value
         this.chartData.name = this.chartData.data.map(item => item.name)
         let chart = echarts.init(this.$refs.demo)
+        chart.clear()
         chart.setOption(this.chartOption())
         let work = null
         window.addEventListener('resize', () => {

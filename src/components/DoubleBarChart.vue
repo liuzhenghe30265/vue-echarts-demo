@@ -8,7 +8,7 @@
 --> 
 <template>
   <div ref="DoubleBarChart"
-       class="chart" />
+    class="chart" />
 </template>
 
 <script>
@@ -67,6 +67,9 @@ export default {
   },
   mounted() {
     this.drawChart()
+    setInterval(() => {
+      this.drawChart()
+    }, 5000)
   },
   methods: {
     // 数组排序
@@ -92,6 +95,7 @@ export default {
         this.chartData.maximum = Math.ceil(maxVal / 100) * 100
 
         let chart = echarts.init(this.$refs.DoubleBarChart)
+        chart.clear()
         chart.setOption(this.chartOption())
         let work = null
         window.addEventListener('resize', () => {

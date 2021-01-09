@@ -8,7 +8,7 @@
 --> 
 <template>
   <div ref="PictorialBarChart"
-       class="chart" />
+    class="chart" />
 </template>
 
 <script>
@@ -61,6 +61,9 @@ export default {
   },
   mounted() {
     this.drawChart()
+    setInterval(() => {
+      this.drawChart()
+    }, 5000)
   },
   created() { },
   methods: {
@@ -75,6 +78,7 @@ export default {
         this.chartData.name = this.chartData.data.map(item => item.name)
         this.chartData.count = this.chartData.data.map(item => item.count)
         let chart = echarts.init(this.$refs.PictorialBarChart)
+        chart.clear()
         chart.setOption(this.chartOption())
         let work = null
         window.addEventListener('resize', () => {

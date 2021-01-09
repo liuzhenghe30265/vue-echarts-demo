@@ -8,7 +8,7 @@
 --> 
 <template>
   <div ref="BasicLineChart"
-       class="chart"></div>
+    class="chart"></div>
 </template>
 
 <script>
@@ -55,6 +55,9 @@ export default {
   },
   mounted() {
     this.drawChart()
+    setInterval(() => {
+      this.drawChart()
+    }, 5000)
   },
   methods: {
     // 绘制图表
@@ -67,6 +70,7 @@ export default {
         // this.chartData.data = this.value
         this.chartData.name = this.chartData.data.map(item => item.name)
         let chart = echarts.init(this.$refs.BasicLineChart)
+        chart.clear()
         chart.setOption(this.chartOption())
         let work = null
         window.addEventListener('resize', () => {

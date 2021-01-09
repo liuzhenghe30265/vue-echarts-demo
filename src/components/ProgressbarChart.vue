@@ -3,12 +3,12 @@
  * @Email: 15901450207@163.com
  * @Date: 2020-07-30 15:10:39
  * @LastEditors: liuzhenghe
- * @LastEditTime: 2020-11-10 16:42:13
+ * @LastEditTime: 2021-01-09 10:04:18
  * @Descripttion: 进度条效果
 --> 
 <template>
   <div ref="ProgressbarChart"
-       class="chart"></div>
+    class="chart"></div>
 </template>
 <script>
 import echarts from 'echarts'
@@ -46,6 +46,9 @@ export default {
   },
   mounted() {
     this.drawChart()
+    setInterval(() => {
+      this.drawChart()
+    }, 5000)
   },
   methods: {
     // 绘制图表
@@ -69,6 +72,7 @@ export default {
           }
         )
         let chart = echarts.init(this.$refs.ProgressbarChart)
+        chart.clear()
         chart.setOption(this.chartOption())
         let work = null
         window.addEventListener('resize', () => {

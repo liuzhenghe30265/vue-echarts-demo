@@ -3,12 +3,12 @@
  * @Email: 15901450207@163.com
  * @Date: 2020-07-26 09:32:45
  * @LastEditors: liuzhenghe
- * @LastEditTime: 2020-11-18 11:35:45
+ * @LastEditTime: 2021-01-09 10:06:11
  * @Descripttion: 基础饼图
 --> 
 <template>
   <div ref="BasicPieChart"
-       class="chart">
+    class="chart">
   </div>
 </template>
 
@@ -54,6 +54,9 @@ export default {
   },
   mounted() {
     this.drawChart()
+    setInterval(() => {
+      this.drawChart()
+    }, 5000)
   },
   methods: {
     // 绘制图表
@@ -68,6 +71,7 @@ export default {
         let valArr = this.chartData.data.map(item => item.value)
         this.chartData.total = eval(valArr.join('+'))
         let chart = echarts.init(this.$refs.BasicPieChart)
+        chart.clear()
         chart.setOption(this.chartOption())
         let work = null
         window.addEventListener('resize', () => {
@@ -130,7 +134,7 @@ export default {
             type: 'pie',
             clockWise: true, // 顺时加载
             hoverAnimation: true, // 鼠标移入变大
-            radius: ['40%', '60%'], // 内外环大小
+            radius: ['30%', '40%'], // 内外环大小
             center: ['30%', '55%'], // 位置
             color: ['#52FB6B', '#A152FB', '#52BDFB'],
             avoidLabelOverlap: false,

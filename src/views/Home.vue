@@ -1,6 +1,12 @@
 <template>
   <div class="charts-container">
     <ul>
+      <li class="show">
+        <LineChartA>
+        </LineChartA>
+        <a target="blank"
+           href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/LineChartA.vue">🔗</a>
+      </li>
       <li>
         <BasicLineChart
                           :value="chartData">
@@ -56,6 +62,7 @@
 </template>
 
 <script>
+import LineChartA from '@/components/LineChartA.vue'
 import CustomizedRadarChart from '@/components/CustomizedRadarChart.vue'
 import PictorialBarChart from '@/components/PictorialBarChart.vue'
 import ProgressbarChart from '@/components/ProgressbarChart.vue'
@@ -67,6 +74,7 @@ import BasicLineChart from '@/components/BasicLineChart.vue'
 export default {
   name: 'Home',
   components: {
+    LineChartA,
     CustomizedRadarChart,
     PictorialBarChart,
     ProgressbarChart,
@@ -117,7 +125,7 @@ export default {
       box-sizing: border-box;
       padding: 0 10px;
       margin-bottom: 20px;
-      // display: none;
+      display: none;
       &.show {
         display: block;
       }

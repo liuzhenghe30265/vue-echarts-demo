@@ -3,7 +3,7 @@
  * @Email: liuzhenghe@allinmd.cn
  * @Date: 2021-01-21 14:31:53
  * @LastEditors: liuzhenghe
- * @LastEditTime: 2021-01-21 14:36:02
+ * @LastEditTime: 2021-02-06 10:27:55
  * @Descripttion: 
 -->
 
@@ -160,14 +160,14 @@ export default {
           symbol: 'roundRect',
           symbolSize: [10, 20],
           lineStyle: {
-            color: '#FF4747',
+            color: '#52FB6B',
             width: 4,
             type: 'solid'
           },
           itemStyle: {
             borderWidth: 1,
             borderColor: '#fff',
-            color: '#FF4747'
+            color: '#52FB6B'
           }
         },
         {
@@ -178,14 +178,14 @@ export default {
           symbol: 'roundRect',
           symbolSize: [10, 20],
           lineStyle: {
-            color: '#4266FB',
+            color: '#A152FB',
             width: 4,
             type: 'solid'
           },
           itemStyle: {
             borderWidth: 1,
             borderColor: '#fff',
-            color: '#4266FB'
+            color: '#A152FB'
           }
         }],
       }

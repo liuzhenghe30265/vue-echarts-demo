@@ -2,6 +2,12 @@
   <div class="charts-container">
     <ul>
       <li class="show">
+        <RelationChart>
+        </RelationChart>
+        <a target="blank"
+           href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/RelationChart.vue">🔗</a>
+      </li>
+      <li>
         <LineChartA>
         </LineChartA>
         <a target="blank"
@@ -62,6 +68,7 @@
 </template>
 
 <script>
+import RelationChart from '@/components/RelationChart.vue'
 import LineChartA from '@/components/LineChartA.vue'
 import CustomizedRadarChart from '@/components/CustomizedRadarChart.vue'
 import PictorialBarChart from '@/components/PictorialBarChart.vue'
@@ -74,6 +81,7 @@ import BasicLineChart from '@/components/BasicLineChart.vue'
 export default {
   name: 'Home',
   components: {
+    RelationChart,
     LineChartA,
     CustomizedRadarChart,
     PictorialBarChart,
@@ -125,7 +133,7 @@ export default {
       box-sizing: border-box;
       padding: 0 10px;
       margin-bottom: 20px;
-      display: none;
+      // display: none;
       &.show {
         display: block;
       }

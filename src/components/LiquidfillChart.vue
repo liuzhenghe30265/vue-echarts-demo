@@ -1,28 +1,31 @@
-<!--
- * @Author: liuzhenghe
- * @Email: 15901450207@163.com
- * @Date: 2020-07-28 09:55:52
- * @LastEditors: liuzhenghe
- * @LastEditTime: 2020-08-22 11:00:26
- * @Descripttion: 水球
---> 
 <template>
-  <div ref="LiquidfillChart"
-       class="chart"></div>
+  <div
+    ref="chart"
+    class="chart" />
 </template>
 
 <script>
 import echarts from 'echarts'
 import 'echarts-liquidfill'
 export default {
-  name: 'LiquidfillChart',
+  name: 'chart',
   props: {
     value: {
       type: Object,
-      default() {
+      default () {
         return {}
-      },
-    },
+      }
+    }
+  },
+  data () {
+    return {
+      chart: null,
+      chartData: {
+        name: '总量',
+        text: '200',
+        data: 0.5
+      }
+    }
   },
   watch: {
     value: {
@@ -30,36 +33,30 @@ export default {
       handler: function (val) {
         this.drawChart()
       }
-    },
-  },
-  data() {
-    return {
-      chartData: {
-        name: '总量',
-        text: '200',
-        data: 0.5,
-      },
     }
   },
-  mounted() {
+  mounted () {
     this.drawChart()
+  },
+  destroyed () {
+    echarts.dispose(this.chart)
   },
   methods: {
     // 绘制图表
-    drawChart() {
-      let chartDOM = this.$refs.LiquidfillChart
+    drawChart () {
+      const chartDOM = this.$refs.chart
       if (!chartDOM) {
         console.warn('echarts init dom failed')
         return false
       } else {
         // this.chartData = this.value
-        let chart = echarts.init(this.$refs.LiquidfillChart)
-        chart.setOption(this.chartOption())
+        this.chart = echarts.init(this.$refs.chart)
+        this.chart.setOption(this.chartOption())
         let work = null
         window.addEventListener('resize', () => {
           if (work == null) {
             work = setTimeout(() => {
-              chart.resize()
+              this.chart.resize()
               work = null
             }, 100)
           }
@@ -67,8 +64,7 @@ export default {
       }
     },
     // 图表配置
-    chartOption() {
-      const _this = this
+    chartOption () {
       return {
         title: {
           text: this.chartData.text,
@@ -76,10 +72,10 @@ export default {
             fontWeight: 'bold',
             fontSize: 28,
             color: '#00DDFF',
-            fontFamily: 'Arial',
+            fontFamily: 'Arial'
           },
           x: 'center',
-          y: '50%',
+          y: '50%'
         },
         graphic: [
           {
@@ -95,11 +91,11 @@ export default {
                 style: {
                   fill: '#AED8E5',
                   text: this.chartData.name,
-                  fontSize: 14,
-                },
-              },
-            ],
-          },
+                  fontSize: 14
+                }
+              }
+            ]
+          }
         ],
         series: [
           {
@@ -120,38 +116,38 @@ export default {
                     colorStops: [
                       {
                         offset: 1,
-                        color: '#52FB6B',
+                        color: '#52FB6B'
                       },
                       {
                         offset: 0,
-                        color: '#A152FB',
-                      },
+                        color: '#A152FB'
+                      }
                     ],
-                    globalCoord: false,
-                  },
-                },
-              },
+                    globalCoord: false
+                  }
+                }
+              }
             ],
             backgroundStyle: {
-              color: 'transparent',
+              color: 'transparent'
             },
             outline: {
               borderDistance: 3,
               itemStyle: {
                 borderWidth: 2,
-                borderColor: '#A152FB',
-              },
+                borderColor: '#A152FB'
+              }
             },
             label: {
               normal: {
-                formatter: '',
-              },
-            },
-          },
-        ],
+                formatter: ''
+              }
+            }
+          }
+        ]
       }
-    },
-  },
+    }
+  }
 }
 </script>
 

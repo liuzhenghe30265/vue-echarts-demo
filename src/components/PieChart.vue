@@ -1,28 +1,40 @@
-<!--
- * @Author: liuzhenghe
- * @Email: 15901450207@163.com
- * @Date: 2020-07-26 09:32:45
- * @LastEditors: liuzhenghe
- * @LastEditTime: 2021-01-09 10:06:11
- * @Descripttion: 基础饼图
---> 
 <template>
-  <div ref="BasicPieChart"
-    class="chart">
-  </div>
+  <div
+    ref="chart"
+    class="chart" />
 </template>
 
 <script>
 import echarts from 'echarts'
 export default {
-  name: 'BasicPieChart',
+  name: 'Chart',
   props: {
     value: {
       type: Array,
-      default() {
+      default () {
         return []
-      },
-    },
+      }
+    }
+  },
+  data () {
+    return {
+      chartData: {
+        data: [
+          {
+            name: '百度',
+            value: 100
+          },
+          {
+            name: '搜狗',
+            value: 200
+          },
+          {
+            name: '谷歌',
+            value: 300
+          }
+        ]
+      }
+    }
   },
   watch: {
     value: {
@@ -30,54 +42,34 @@ export default {
       handler: function (val) {
         this.drawChart()
       }
-    },
-  },
-  data() {
-    return {
-      chartData: {
-        data: [
-          {
-            name: '百度',
-            value: 100,
-          },
-          {
-            name: '搜狗',
-            value: 200,
-          },
-          {
-            name: '谷歌',
-            value: 300,
-          },
-        ],
-      },
     }
   },
-  mounted() {
+  mounted () {
     this.drawChart()
-    setInterval(() => {
-      this.drawChart()
-    }, 5000)
+  },
+  destroyed () {
+    echarts.dispose(this.chart)
   },
   methods: {
     // 绘制图表
-    drawChart() {
-      let chartDOM = this.$refs.BasicPieChart
+    drawChart () {
+      const chartDOM = this.$refs.chart
       if (!chartDOM) {
         console.warn('echarts init dom failed')
         return false
       } else {
         // 处理数据
         // this.chartData.data = this.value // 使用父组件传递的数据
-        let valArr = this.chartData.data.map(item => item.value)
+        const valArr = this.chartData.data.map(item => item.value)
         this.chartData.total = eval(valArr.join('+'))
-        let chart = echarts.init(this.$refs.BasicPieChart)
-        chart.clear()
-        chart.setOption(this.chartOption())
+        this.chart = echarts.init(this.$refs.chart)
+        this.chart.clear()
+        this.chart.setOption(this.chartOption())
         let work = null
         window.addEventListener('resize', () => {
           if (work == null) {
             work = setTimeout(() => {
-              chart.resize()
+              this.chart.resize()
               work = null
             }, 100)
           }
@@ -85,7 +77,7 @@ export default {
       }
     },
     // 图表配置
-    chartOption() {
+    chartOption () {
       const _this = this
       return {
         animation: true,
@@ -99,7 +91,7 @@ export default {
             // return [point[0], '10%']
             // return [0, point[1]]
             // return [point[1], 0]
-          },
+          }
         },
         // 图例
         legend: {
@@ -123,10 +115,10 @@ export default {
               name,
               resObj[name].value + ',',
               ((resObj[name].value / _this.chartData.total) * 100).toFixed(2) +
-              '%',
+              '%'
             ]
             return arr.join('')
-          },
+          }
         },
         series: [
           {
@@ -141,27 +133,27 @@ export default {
             label: {
               normal: {
                 show: false,
-                position: 'center',
+                position: 'center'
               },
               emphasis: {
                 show: false,
                 textStyle: {
                   fontSize: '14',
-                  fontWeight: 'bold',
-                },
-              },
+                  fontWeight: 'bold'
+                }
+              }
             },
             labelLine: {
               normal: {
-                show: true,
-              },
+                show: true
+              }
             },
-            data: this.chartData.data,
-          },
-        ],
+            data: this.chartData.data
+          }
+        ]
       }
-    },
-  },
+    }
+  }
 }
 </script>
 

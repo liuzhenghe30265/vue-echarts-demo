@@ -1,24 +1,17 @@
-<!--
- * @Author: liuzhenghe
- * @Email: 15901450207@163.com
- * @Date: 2020-08-01 12:11:07
- * @LastEditors: liuzhenghe
- * @LastEditTime: 2020-08-22 10:54:01
- * @Descripttion: 双柱状图
---> 
 <template>
-  <div ref="DoubleBarChart"
+  <div
+    ref="chart"
     class="chart" />
 </template>
 
 <script>
 import echarts from 'echarts'
 export default {
-  name: 'DoubleBarChart',
+  name: 'chart',
   props: {
     value: {
       type: Object,
-      default() {
+      default () {
         return {}
       },
     },
@@ -31,8 +24,9 @@ export default {
       }
     },
   },
-  data() {
+  data () {
     return {
+      chart: null,
       chartData: {
         femal: [
           {
@@ -65,20 +59,20 @@ export default {
       },
     }
   },
-  mounted() {
+  mounted () {
     this.drawChart()
-    setInterval(() => {
-      this.drawChart()
-    }, 5000)
+  },
+  destroyed () {
+    echarts.dispose(this.chart)
   },
   methods: {
     // 数组排序
-    sortNumber(a, b) {
+    sortNumber (a, b) {
       return a - b
     },
     // 绘制图表
-    drawChart() {
-      let chartDOM = this.$refs.DoubleBarChart
+    drawChart () {
+      let chartDOM = this.$refs.chart
       if (!chartDOM) {
         console.warn('echarts init dom failed')
         return false
@@ -93,15 +87,14 @@ export default {
         )
         const maxVal = allCounts.sort(this.sortNumber).reverse()[0]
         this.chartData.maximum = Math.ceil(maxVal / 100) * 100
-
-        let chart = echarts.init(this.$refs.DoubleBarChart)
-        chart.clear()
-        chart.setOption(this.chartOption())
+        this.chart = echarts.init(this.$refs.chart)
+        this.chart.clear()
+        this.chart.setOption(this.chartOption())
         let work = null
         window.addEventListener('resize', () => {
           if (work == null) {
             work = setTimeout(() => {
-              chart.resize()
+              this.chart.resize()
               work = null
             }, 100)
           }
@@ -109,7 +102,7 @@ export default {
       }
     },
     // 绘制图表
-    chartOption() {
+    chartOption () {
       return {
         legend: {
           orient: 'horizontal',

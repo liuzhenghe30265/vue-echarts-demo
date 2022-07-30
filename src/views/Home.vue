@@ -1,98 +1,126 @@
 <template>
-  <div class="charts-container">
+  <div
+    class="charts-container">
     <ul>
-      <li class="show">
+      <li>
+        <Demo>
+        </Demo>
+        <a target="blank"
+          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/demo.vue">🔗</a>
+      </li>
+      <li>
         <RelationChart>
         </RelationChart>
         <a target="blank"
-           href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/RelationChart.vue">🔗</a>
+          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/RelationChart.vue">🔗</a>
       </li>
       <li>
-        <LineChartA>
-        </LineChartA>
+        <LineChart
+          :value="chartData">
+        </LineChart>
         <a target="blank"
-           href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/LineChartA.vue">🔗</a>
+          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/LineChart.vue">🔗</a>
       </li>
       <li>
-        <BasicLineChart
-                          :value="chartData">
-        </BasicLineChart>
+        <LineChart2>
+        </LineChart2>
         <a target="blank"
-           href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/BasicLineChart.vue">🔗</a>
+          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/LineChart2.vue">🔗</a>
       </li>
       <li>
-        <BasicBarChart>
-        </BasicBarChart>
+        <BarChart>
+        </BarChart>
         <a target="blank"
-           href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/BasicBarChart.vue">🔗</a>
+          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/BarChart.vue">🔗</a>
       </li>
       <li>
-        <DoubleBarChart>
-        </DoubleBarChart>
+        <BarChartDouble>
+        </BarChartDouble>
         <a target="blank"
-           href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/DoubleBarChart.vue">🔗</a>
+          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/BarChartDouble.vue">🔗</a>
       </li>
       <li>
-        <BasicPieChart>
-        </BasicPieChart>
+        <BarChartProcess>
+        </BarChartProcess>
         <a target="blank"
-           href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/BasicPieChart.vue">🔗</a>
+          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/BarChartProcess.vue">🔗</a>
+      </li>
+      <li>
+        <BarChartProcess2>
+        </BarChartProcess2>
+        <a target="blank"
+          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/BarChartProcess2.vue">🔗</a>
+      </li>
+      <li>
+        <BarChartPictorial>
+        </BarChartPictorial>
+        <a target="blank"
+          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/BarChartPictorial.vue">🔗</a>
+      </li>
+      <li>
+        <PieChart>
+        </PieChart>
+        <a target="blank"
+          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/PieChart.vue">🔗</a>
       </li>
       <li>
         <LiquidfillChart>
         </LiquidfillChart>
         <a target="blank"
-           href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/LiquidfillChart.vue">🔗</a>
+          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/LiquidfillChart.vue">🔗</a>
       </li>
       <li>
-        <ProgressbarChart>
-        </ProgressbarChart>
+        <RadarChart>
+        </RadarChart>
         <a target="blank"
-           href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/ProgressbarChart.vue">🔗</a>
+          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/RadarChart.vue">🔗</a>
       </li>
-      <li>
-        <PictorialBarChart>
-        </PictorialBarChart>
+      <li
+        class="show">
+        <LargeAreaChart>
+        </LargeAreaChart>
         <a target="blank"
-           href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/PictorialBarChart.vue">🔗</a>
+          href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/LargeAreaChart.vue">🔗</a>
       </li>
-      <li>
-        <CustomizedRadarChart>
-        </CustomizedRadarChart>
-        <a target="blank"
-           href="https://github.com/liuzhenghe30265/vue-echarts-demo/blob/master/src/components/CustomizedRadarChart.vue">🔗</a>
-      </li>
-      <div class="clear"></div>
+      <div
+        class="clear">
+      </div>
     </ul>
   </div>
 </template>
 
 <script>
+import Demo from '@/components/Demo.vue'
+import LargeAreaChart from '@/components/LargeAreaChart.vue'
 import RelationChart from '@/components/RelationChart.vue'
-import LineChartA from '@/components/LineChartA.vue'
-import CustomizedRadarChart from '@/components/CustomizedRadarChart.vue'
-import PictorialBarChart from '@/components/PictorialBarChart.vue'
-import ProgressbarChart from '@/components/ProgressbarChart.vue'
+import LineChart2 from '@/components/LineChart2.vue'
+import RadarChart from '@/components/RadarChart.vue'
+import BarChartPictorial from '@/components/BarChartPictorial.vue'
+import BarChartProcess from '@/components/BarChartProcess.vue'
+import BarChartProcess2 from '@/components/BarChartProcess2.vue'
 import LiquidfillChart from '@/components/LiquidfillChart.vue'
-import BasicPieChart from '@/components/BasicPieChart.vue'
-import DoubleBarChart from '@/components/DoubleBarChart.vue'
-import BasicBarChart from '@/components/BasicBarChart.vue'
-import BasicLineChart from '@/components/BasicLineChart.vue'
+import PieChart from '@/components/PieChart.vue'
+import BarChartDouble from '@/components/BarChartDouble.vue'
+import BarChart from '@/components/BarChart.vue'
+import LineChart from '@/components/LineChart.vue'
 export default {
   name: 'Home',
   components: {
+    Demo,
+    LargeAreaChart,
     RelationChart,
-    LineChartA,
-    CustomizedRadarChart,
-    PictorialBarChart,
-    ProgressbarChart,
+    LineChart2,
+    RadarChart,
+    BarChartPictorial,
+    BarChartProcess,
+    BarChartProcess2,
     LiquidfillChart,
-    BasicPieChart,
-    DoubleBarChart,
-    BasicBarChart,
-    BasicLineChart,
+    PieChart,
+    BarChartDouble,
+    BarChart,
+    LineChart,
   },
-  data() {
+  data () {
     return {
       chartData: [
         {

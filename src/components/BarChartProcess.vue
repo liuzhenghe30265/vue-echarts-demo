@@ -1,27 +1,34 @@
-<!--
- * @Author: liuzhenghe
- * @Email: 15901450207@163.com
- * @Date: 2020-07-30 15:10:39
- * @LastEditors: liuzhenghe
- * @LastEditTime: 2021-01-09 10:04:18
- * @Descripttion: 进度条效果
---> 
 <template>
-  <div ref="ProgressbarChart"
-    class="chart"></div>
+  <div
+    ref="chart"
+    class="chart" />
 </template>
 <script>
 import echarts from 'echarts'
 import bg from '@/assets/bgi.png'
 export default {
-  name: 'ProgressbarChart',
+  name: 'chart',
   props: {
     value: {
       type: Array,
-      default() {
+      default () {
         return []
-      },
-    },
+      }
+    }
+  },
+  data () {
+    return {
+      chart: null,
+      chartData: {
+        data: [
+          { name: '进度1', count: 100 },
+          { name: '进度2', count: 200 },
+          { name: '进度3', count: 300 },
+          { name: '进度4', count: 200 },
+          { name: '进度5', count: 100 }
+        ]
+      }
+    }
   },
   watch: {
     value: {
@@ -29,31 +36,18 @@ export default {
       handler: function (val) {
         this.drawChart()
       }
-    },
-  },
-  data() {
-    return {
-      chartData: {
-        data: [
-          { name: '进度1', count: 100 },
-          { name: '进度2', count: 200 },
-          { name: '进度3', count: 300 },
-          { name: '进度4', count: 200 },
-          { name: '进度5', count: 100 },
-        ],
-      },
     }
   },
-  mounted() {
+  mounted () {
     this.drawChart()
-    setInterval(() => {
-      this.drawChart()
-    }, 5000)
+  },
+  destroyed () {
+    echarts.dispose(this.chart)
   },
   methods: {
     // 绘制图表
-    drawChart() {
-      let chartDOM = this.$refs.ProgressbarChart
+    drawChart () {
+      const chartDOM = this.$refs.chart
       if (!chartDOM) {
         console.warn('echarts init dom failed')
         return false
@@ -67,18 +61,18 @@ export default {
             return {
               name: d.name,
               value: +this.chartData.max + 20,
-              symbol: `image://${bg}`,
+              symbol: `image://${bg}`
             }
           }
         )
-        let chart = echarts.init(this.$refs.ProgressbarChart)
-        chart.clear()
-        chart.setOption(this.chartOption())
+        this.chart = echarts.init(this.$refs.chart)
+        this.chart.clear()
+        this.chart.setOption(this.chartOption())
         let work = null
         window.addEventListener('resize', () => {
           if (work == null) {
             work = setTimeout(() => {
-              chart.resize()
+              this.chart.resize()
               work = null
             }, 100)
           }
@@ -86,7 +80,7 @@ export default {
       }
     },
     // 图表配置
-    chartOption() {
+    chartOption () {
       return {
         title: {
           show: false,
@@ -96,56 +90,56 @@ export default {
           textStyle: {
             fontSize: '16',
             fontWeight: 'normal',
-            color: '#fff',
-          },
+            color: '#fff'
+          }
         },
         tooltip: {
           show: false,
           trigger: 'axis',
           axisPointer: {
-            type: 'line',
-          },
+            type: 'line'
+          }
         },
         grid: {
           top: '0%',
           right: '0%',
           bottom: '0%',
           left: '0%',
-          containLabel: true,
+          containLabel: true
         },
         xAxis: [
           {
             type: 'value',
             position: 'bottom',
             axisTick: {
-              show: false,
+              show: false
             },
             axisLabel: {
               show: false,
               color: '#01ACE0',
               interval: 0,
-              fontSize: 12,
+              fontSize: 12
             },
             axisLine: {
               show: false,
               lineStyle: {
-                color: '#333',
-              },
+                color: '#333'
+              }
             },
             splitLine: {
               show: false,
               lineStyle: {
-                color: ['#333'],
-              },
-            },
-          },
+                color: ['#333']
+              }
+            }
+          }
         ],
         yAxis: [
           {
             type: 'category',
             data: this.chartData.name,
             axisTick: {
-              show: false,
+              show: false
             },
             axisLabel: {
               show: true,
@@ -156,8 +150,8 @@ export default {
               // 文字对齐方式
               textStyle: {
                 align: 'right',
-                baseline: 'middle',
-              },
+                baseline: 'middle'
+              }
               // formatter: function (value) {
               //   return '{' + value + '| }\n{value|' + value + '}';
               // },
@@ -192,27 +186,27 @@ export default {
             axisLine: {
               show: false,
               lineStyle: {
-                color: '#333',
-              },
-            },
+                color: '#333'
+              }
+            }
           },
           {
             type: 'category',
             data: this.chartData.count,
             axisTick: {
-              show: false,
+              show: false
             },
             axisLabel: {
               color: '#00DDFF',
-              fontSize: '12',
+              fontSize: '12'
             },
             axisLine: {
               show: false,
               lineStyle: {
-                color: '#333',
-              },
-            },
-          },
+                color: '#333'
+              }
+            }
+          }
         ],
         series: [
           {
@@ -231,16 +225,16 @@ export default {
                   colorStops: [
                     {
                       offset: 0,
-                      color: '#00B8FF',
+                      color: '#00B8FF'
                     },
                     {
                       offset: 1,
-                      color: '#04BBA2',
-                    },
-                  ],
+                      color: '#04BBA2'
+                    }
+                  ]
                 },
-                barBorderRadius: [20, 20, 20, 20],
-              },
+                barBorderRadius: [20, 20, 20, 20]
+              }
             },
             z: 10,
             animationDuration: 3000,
@@ -248,7 +242,7 @@ export default {
             animationDelay: function (dataIndex, params) {
               return dataIndex * 300
             },
-            data: this.chartData.count,
+            data: this.chartData.count
           },
           {
             name: '',
@@ -272,12 +266,12 @@ export default {
             animationDelay: function (dataIndex, params) {
               return dataIndex * 300
             },
-            data: this.chartData.pictorialBar,
-          },
-        ],
+            data: this.chartData.pictorialBar
+          }
+        ]
       }
-    },
-  },
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>

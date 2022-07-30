@@ -1,24 +1,17 @@
-<!--
- * @Author: liuzhenghe
- * @Email: 15901450207@163.com
- * @Date: 2020-08-01 12:11:07
- * @LastEditors: liuzhenghe
- * @LastEditTime: 2020-08-22 11:07:43
- * @Descripttion: 象形柱状图
---> 
 <template>
-  <div ref="PictorialBarChart"
+  <div
+    ref="chart"
     class="chart" />
 </template>
 
 <script>
 import echarts from 'echarts'
 export default {
-  name: 'PictorialBarChart',
+  name: 'chart',
   props: {
     value: {
       type: Array,
-      default() {
+      default () {
         return []
       },
     },
@@ -31,8 +24,9 @@ export default {
       }
     },
   },
-  data() {
+  data () {
     return {
+      chart: null,
       chartData: {
         data: [
           {
@@ -59,17 +53,16 @@ export default {
       },
     }
   },
-  mounted() {
+  mounted () {
     this.drawChart()
-    setInterval(() => {
-      this.drawChart()
-    }, 5000)
   },
-  created() { },
+  destroyed () {
+    echarts.dispose(this.chart)
+  },
   methods: {
     // 绘制图表
-    drawChart() {
-      let chartDOM = this.$refs.PictorialBarChart
+    drawChart () {
+      let chartDOM = this.$refs.chart
       if (!chartDOM) {
         console.warn('echarts init dom failed')
         return false
@@ -77,14 +70,14 @@ export default {
         // this.chartData.data = this.value
         this.chartData.name = this.chartData.data.map(item => item.name)
         this.chartData.count = this.chartData.data.map(item => item.count)
-        let chart = echarts.init(this.$refs.PictorialBarChart)
-        chart.clear()
-        chart.setOption(this.chartOption())
+        this.chart = echarts.init(this.$refs.chart)
+        this.chart.clear()
+        this.chart.setOption(this.chartOption())
         let work = null
         window.addEventListener('resize', () => {
           if (work == null) {
             work = setTimeout(() => {
-              chart.resize()
+              this.chart.resize()
               work = null
             }, 100)
           }
@@ -92,7 +85,7 @@ export default {
       }
     },
     // 绘制图表
-    chartOption() {
+    chartOption () {
       return {
         title: {
           show: false,
@@ -122,7 +115,6 @@ export default {
         xAxis: [
           {
             type: 'category',
-            data: name,
             axisTick: {
               show: false,
             },
@@ -151,7 +143,6 @@ export default {
           {
             show: false,
             type: 'value',
-            data: name,
             axisTick: {
               show: false,
             },

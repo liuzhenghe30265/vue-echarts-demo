@@ -1,27 +1,48 @@
-<!--
- * @Author: liuzhenghe
- * @Email: 15901450207@163.com
- * @Date: 2020-08-13 16:40:29
- * @LastEditors: liuzhenghe
- * @LastEditTime: 2020-08-22 11:10:08
- * @Descripttion: 自定义雷达图
--->
 <template>
-  <div ref="CustomizedRadarChart"
+  <div
+    ref="chart"
     class="chart" />
 </template>
 
 <script>
 import echarts from 'echarts'
 export default {
-  name: 'CustomizedRadarChart',
+  name: 'Chart',
   props: {
     value: {
       type: Array,
-      default() {
+      default () {
         return []
-      },
-    },
+      }
+    }
+  },
+  data () {
+    return {
+      chartData: {
+        data: [
+          {
+            name: '数据1',
+            value: [100, 200]
+          },
+          {
+            name: '数据2',
+            value: [400, 500]
+          },
+          {
+            name: '数据3',
+            value: [700, 800]
+          },
+          {
+            name: '数据4',
+            value: [1000, 1100]
+          },
+          {
+            name: '数据5',
+            value: [100, 200]
+          }
+        ]
+      }
+    }
   },
   watch: {
     value: {
@@ -29,60 +50,31 @@ export default {
       handler: function (val) {
         this.drawChart()
       }
-    },
-  },
-  data() {
-    return {
-      chartData: {
-        data: [
-          {
-            name: '数据1',
-            value: [100, 200],
-          },
-          {
-            name: '数据2',
-            value: [400, 500],
-          },
-          {
-            name: '数据3',
-            value: [700, 800],
-          },
-          {
-            name: '数据4',
-            value: [1000, 1100],
-          },
-          {
-            name: '数据5',
-            value: [100, 200],
-          },
-        ],
-      },
     }
   },
-  mounted() {
+  mounted () {
     this.drawChart()
-    setInterval(() => {
-      this.drawChart()
-    }, 5000)
   },
-  created() { },
+  destroyed () {
+    echarts.dispose(this.chart)
+  },
   methods: {
     // 绘制图表
-    drawChart() {
-      let chartDOM = this.$refs.CustomizedRadarChart
+    drawChart () {
+      const chartDOM = this.$refs.chart
       if (!chartDOM) {
         console.warn('echarts init dom failed')
         return false
       } else {
         // this.chartData.data = this.value
-        let chart = echarts.init(this.$refs.CustomizedRadarChart)
-        chart.clear()
-        chart.setOption(this.chartOption())
+        this.chart = echarts.init(this.$refs.chart)
+        this.chart.clear()
+        this.chart.setOption(this.chartOption())
         let work = null
         window.addEventListener('resize', () => {
           if (work == null) {
             work = setTimeout(() => {
-              chart.resize()
+              this.chart.resize()
               work = null
             }, 100)
           }
@@ -90,15 +82,15 @@ export default {
       }
     },
     // 绘制图表
-    chartOption() {
-      let _this = this
+    chartOption () {
+      const _this = this
       return {
         title: {
-          show: false,
+          show: false
         },
         tooltip: {
           trigger: 'none',
-          confine: true,
+          confine: true
         },
         legend: {
           show: false,
@@ -108,8 +100,8 @@ export default {
           right: '5%',
           textStyle: {
             color: 'rgba(255,255,255,.6)',
-            fontSize: 12,
-          },
+            fontSize: 12
+          }
         },
         radar: {
           name: {
@@ -124,7 +116,7 @@ export default {
                 fontSize: 14,
                 padding: 5,
                 fontWeight: 'bold',
-                align: 'left',
+                align: 'left'
               },
               a1: {
                 color: '#0A1228',
@@ -132,7 +124,7 @@ export default {
                 fontSize: 14,
                 padding: 5,
                 fontWeight: 'bold',
-                align: 'left',
+                align: 'left'
               },
               a2: {
                 color: '#0A1228',
@@ -140,7 +132,7 @@ export default {
                 fontSize: 14,
                 padding: 5,
                 fontWeight: 'bold',
-                align: 'left',
+                align: 'left'
               },
               a3: {
                 color: '#0A1228',
@@ -148,7 +140,7 @@ export default {
                 fontSize: 14,
                 padding: 5,
                 fontWeight: 'bold',
-                align: 'left',
+                align: 'left'
               },
               a4: {
                 color: '#0A1228',
@@ -156,16 +148,16 @@ export default {
                 fontSize: 14,
                 padding: 5,
                 fontWeight: 'bold',
-                align: 'left',
+                align: 'left'
               },
               b: {
                 color: '#AED8E5',
                 fontWeight: 'bold',
                 fontSize: 12,
                 padding: [5, 0],
-                align: 'left',
-              },
-            },
+                align: 'left'
+              }
+            }
           },
           nameGap: 5,
           radius: '70%',
@@ -175,21 +167,21 @@ export default {
           splitArea: {
             show: true,
             areaStyle: {
-              color: ['rgba(8,38,61,0.30)', 'rgba(8,38,61,0.30)'],
-            },
+              color: ['rgba(8,38,61,0.30)', 'rgba(8,38,61,0.30)']
+            }
           },
           axisLine: {
             lineStyle: {
               color: 'rgba(0,70,124,.6)',
-              type: 'dashed',
-            },
+              type: 'dashed'
+            }
           },
           splitLine: {
             lineStyle: {
               color: 'rgba(0,70,124,.6)',
-              type: 'dashed',
-            },
-          },
+              type: 'dashed'
+            }
+          }
         },
         series: [
           {
@@ -197,12 +189,12 @@ export default {
             data: this.chartData.data,
             label: {
               show: false,
-              color: '#727BFF',
+              color: '#727BFF'
             },
             symbol: 'circle',
             symbolSize: 8,
             itemStyle: {
-              color: '#FCEC2E',
+              color: '#FCEC2E'
             },
             lineStyle: {
               color: {
@@ -214,15 +206,15 @@ export default {
                 colorStops: [
                   {
                     offset: 0,
-                    color: '#FCEC2E',
+                    color: '#FCEC2E'
                   },
                   {
                     offset: 1,
-                    color: '#00DDFF',
-                  },
+                    color: '#00DDFF'
+                  }
                 ],
-                globalCoord: false,
-              },
+                globalCoord: false
+              }
             },
             areaStyle: {
               show: true,
@@ -235,26 +227,26 @@ export default {
                 colorStops: [
                   {
                     offset: 0,
-                    color: 'rgba(252,236,46,.2)',
+                    color: 'rgba(252,236,46,.2)'
                   },
                   {
                     offset: 0.5,
-                    color: 'transparent',
+                    color: 'transparent'
                   },
                   {
                     offset: 1,
-                    color: 'rgba(0,221,255,.1)',
-                  },
+                    color: 'rgba(0,221,255,.1)'
+                  }
                 ],
-                globalCoord: false,
-              },
+                globalCoord: false
+              }
             },
-            animationDuration: 3000,
-          },
-        ],
+            animationDuration: 3000
+          }
+        ]
       }
-    },
-  },
+    }
+  }
 }
 </script>
 

@@ -1,17 +1,7 @@
-<!--
- * @Author: liuzhenghe
- * @Email: liuzhenghe@allinmd.cn
- * @Date: 2021-02-06 10:10:02
- * @LastEditors: liuzhenghe
- * @LastEditTime: 2021-02-06 10:25:40
- * @Descripttion: 关系图
--->
-
 <template>
   <div
-    ref="RelationChart"
-    class="chart">
-  </div>
+    ref="chart"
+    class="chart" />
 </template>
 
 <script>
@@ -21,10 +11,15 @@ export default {
   props: {
     value: {
       type: Array,
-      default() {
+      default () {
         return []
-      },
-    },
+      }
+    }
+  },
+  data () {
+    return {
+      chart: null
+    }
   },
   watch: {
     value: {
@@ -32,34 +27,30 @@ export default {
       handler: function (val) {
         this.drawChart()
       }
-    },
-  },
-  data() {
-    return {
     }
   },
-  mounted() {
+  mounted () {
     this.drawChart()
-    setInterval(() => {
-      this.drawChart()
-    }, 5000)
+  },
+  destroyed () {
+    echarts.dispose(this.chart)
   },
   methods: {
     // 绘制图表
-    drawChart() {
-      let chartDOM = this.$refs.RelationChart
+    drawChart () {
+      const chartDOM = this.$refs.chart
       if (!chartDOM) {
         console.warn('echarts init dom failed')
         return false
       } else {
-        let chart = echarts.init(this.$refs.RelationChart)
-        chart.clear()
-        chart.setOption(this.chartOption())
+        this.chart = echarts.init(this.$refs.chart)
+        this.chart.clear()
+        this.chart.setOption(this.chartOption())
         let work = null
         window.addEventListener('resize', () => {
           if (work == null) {
             work = setTimeout(() => {
-              chart.resize()
+              this.chart.resize()
               work = null
             }, 100)
           }
@@ -67,8 +58,7 @@ export default {
       }
     },
     // 图表配置
-    chartOption() {
-      const _this = this
+    chartOption () {
       return {
         animationDurationUpdate: 3000,
         animationEasingUpdate: 'quinticInOut',
@@ -77,7 +67,7 @@ export default {
             show: true,
             textStyle: {
               fontSize: 12
-            },
+            }
           }
         },
         legend: {
@@ -96,21 +86,21 @@ export default {
               name: '关系1',
               itemStyle: {
                 normal: {
-                  color: "#52FB6B",
+                  color: '#52FB6B'
                 }
               }
             }, {
               name: '关系2',
               itemStyle: {
                 normal: {
-                  color: "#A152FB",
+                  color: '#A152FB'
                 }
               }
             }, {
               name: '关系3',
               itemStyle: {
                 normal: {
-                  color: "#52BDFB",
+                  color: '#52BDFB'
                 }
               }
             }],
@@ -119,7 +109,7 @@ export default {
                 show: true,
                 textStyle: {
                   fontSize: 12
-                },
+                }
               }
             },
             force: {
@@ -137,51 +127,51 @@ export default {
             },
             data: [{
               name: '腰椎间盘突出症',
-              draggable: true,
+              draggable: true
             }, {
               name: '椎间盘突出',
               category: 1,
-              draggable: true,
+              draggable: true
             }, {
               name: '腰椎管狭窄',
               category: 1,
-              draggable: true,
+              draggable: true
             }, {
               name: '腰椎滑脱',
               category: 1,
-              draggable: true,
+              draggable: true
             }, {
               name: '腰部疼痛',
               category: 1,
-              draggable: true,
+              draggable: true
             }, {
               name: '下肢疼痛',
               category: 2,
-              draggable: true,
+              draggable: true
             }, {
               name: '腰部钝痛',
               category: 2,
-              draggable: true,
+              draggable: true
             }, {
               name: '腰部钝痛，平躺时缓解',
               category: 2,
-              draggable: true,
+              draggable: true
             }, {
               name: '男性',
               category: 2,
-              draggable: true,
+              draggable: true
             }, {
               name: '女性',
               category: 3,
-              draggable: true,
+              draggable: true
             }, {
               name: '45岁到60岁',
               category: 4,
-              draggable: true,
+              draggable: true
             }, {
               name: '0岁到14岁',
               category: 5,
-              draggable: true,
+              draggable: true
             }],
             links: [{
               source: 0,
@@ -255,8 +245,8 @@ export default {
           }
         ]
       }
-    },
-  },
+    }
+  }
 }
 </script>
 
